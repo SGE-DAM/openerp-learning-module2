@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_championship_team_form">
+        <field name="name">championship.team.form</field>
+        <field name="model">championship.team</field>
+        <field name="arch" type="xml">
+            <form string="championship.team" version="7.0">
+<sheet>
+<group>
+<field name="shield" widget="image" class="oe_left oe_avatar"/>
+				<field name="name" />
+
+</group>
+</sheet>
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_championship_team_tree">
+        <field name="name">championship.team.tree</field>
+        <field name="model">championship.team</field>
+        <field name="arch" type="xml">
+            <tree string="championship.team">
+				<field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_championship_team">
+        <field name="name">Teams</field>
+        <field name="res_model">championship.team</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+   
+
+
+
+
+         <record model="ir.ui.view" id="view_championship_match_form">
+        <field name="name">championship.match.form</field>
+        <field name="model">championship.match</field>
+        <field name="arch" type="xml">
+            <form string="championship.match">
+			<field name="date" />
+			<field name="championship_id" />
+			<field name="round" />
+			<field name="local" />
+			<field name="visitor" />
+			<field name="score_local" />
+			<field name="score_visitor" />
+			<field name="points_local" />
+			<field name="points_visitor" />
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_championship_match_tree">
+        <field name="name">championship.match.tree</field>
+        <field name="model">championship.match</field>
+        <field name="arch" type="xml">
+            <tree string="championship.match">
+			<field name="date" />
+			<field name="championship_id" />
+			<field name="round" />
+			<field name="local" />
+			<field name="visitor" />
+			<field name="score_local" />
+			<field name="score_visitor" />
+			<field name="points_local" />
+			<field name="points_visitor" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_championship_match">
+        <field name="name">match</field>
+        <field name="res_model">championship.match</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>   
+
+
+
+
+         <record model="ir.ui.view" id="view_championship_championships_form">
+        <field name="name">championship.championships.form</field>
+        <field name="model">championship.championship</field>
+        <field name="arch" type="xml">
+            <form string="championship.championship"  version="7.0">
+<sheet>
+<group string="General">
+				<field name="name" />
+				<field name="start_date" />
+				<field name="end_date" /> 
+</group>
+<group string="Teams and Matches">
+				<field name="teams" /> 
+				<field name="matches" />
+</group>
+</sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_championship_championships_tree">
+        <field name="name">championship.championships.tree</field>
+        <field name="model">championship.championship</field>
+        <field name="arch" type="xml">
+            <tree string="championship.championship">
+				<field name="name" />
+				<field name="start_date" />
+				<field name="end_date" />
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_championship_championships">
+        <field name="name">championship</field>
+        <field name="res_model">championship.championship</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>  
+
+
+         <record model="ir.ui.view" id="view_championship_teampoints_form">
+        <field name="name">championship.teampoints.form</field>
+        <field name="model">championship.teampoints</field>
+        <field name="arch" type="xml">
+            <form string="championship.teampoints">
+ 				<field name="championship_id" /> 
+				<field name="team_id" />
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_championship_teampoints_tree">
+        <field name="name">championship.teampoints.tree</field>
+        <field name="model">championship.teampoints</field>
+        <field name="arch" type="xml">
+            <tree string="championship.teampoints">
+ 				<field name="championship_id" /> 
+				<field name="team_id" />
+				<field name="points" />
+				<field name="score" />
+				<field name="conceded" />
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_championship_teampoints">
+        <field name="name">teampoints</field>
+        <field name="res_model">championship.teampoints</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>  
+   
+
+  <menuitem name="Championship" id="menu_championship"/>
+  <menuitem name="Management" id="menu_championship_management"  parent="menu_championship"/>
+  <menuitem name="Teams" id="menu_championship_teams" action="action_championship_team" parent="menu_championship_management"/>
+  <menuitem name="Matches" id="menu_championship_matches" action="action_championship_match" parent="menu_championship_management"/>
+  <menuitem name="Championships" id="menu_championship_championships" action="action_championship_championships" parent="menu_championship_management"/>
+  <menuitem name="teampoints" id="menu_championship_teampoints" action="action_championship_teampoints" parent="menu_championship_management"/>
+  
+        
+</data>
+</openerp>
