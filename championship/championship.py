@@ -1,6 +1,7 @@
 from osv import osv, fields
 import random
 from datetime import datetime
+ 
 
 class championship_team(osv.osv):
 
@@ -31,6 +32,13 @@ class championship_teampoints(osv.osv):
 			for p in partits_visitor:
 				punts = punts + p.points_visitor
 			res[h.id] = punts
+
+			# Necessite actualitzar tambe el camp point_v per poder ordenar self.write(cr, uid, [166, 299], {'fac_id': 21})
+			print h.id
+			print punts
+			self.write(cr, uid, [h.id], {'point_v': punts})
+
+			
 		return res
 
 	def _get_golsf(self, cr, uid, ids, name, arg, context=None):
@@ -69,17 +77,20 @@ class championship_teampoints(osv.osv):
 			for p in partits_visitor:
 				gols = gols + p.score_local
 			res[h.id] = gols
-		return res
+		return res	
 
 	_name = 'championship.teampoints'
 	_columns = {
 		'championship_id' : fields.many2one('championship.championship','Championship'),
 		'team_id' : fields.many2one('championship.team','Team'),
 		'points' : fields.function(_get_points,type='integer',string='Points', store=False),
+		'point_v' : fields.integer('Points'),
 		'score' : fields.function(_get_golsf,type='integer',string='Acumulated Score', store=False),
 		'conceded' : fields.function(_get_golsc,type='integer',string='Conceded Score', store=False),
         
 	}
+	_order = 'point_v desc'
+	
 championship_teampoints()
 
 

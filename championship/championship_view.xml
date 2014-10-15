@@ -138,9 +138,10 @@
         <field name="model">championship.teampoints</field>
         <field name="arch" type="xml">
             <tree string="championship.teampoints">
- 				<field name="championship_id" /> 
+ 				<!-- <field name="points" /> <field name="championship_id" /> -->
 				<field name="team_id" />
-				<field name="points" />
+				
+<field name="point_v" />
 				<field name="score" />
 				<field name="conceded" />
 
