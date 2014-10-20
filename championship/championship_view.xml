@@ -7,17 +7,17 @@
         <field name="model">championship.team</field>
         <field name="arch" type="xml">
             <form string="championship.team" version="7.0">
-<sheet>
-<group>
-<field name="shield" widget="image" class="oe_left oe_avatar"/>
+		<sheet>
+			<group>
+				<field name="shield" widget="image" class="oe_left oe_avatar"/>
 				<field name="name" />
-
-</group>
-</sheet>
+			</group>
+		</sheet>
 
             </form>
         </field>
     </record>
+
     <record model="ir.ui.view" id="view_championship_team_tree">
         <field name="name">championship.team.tree</field>
         <field name="model">championship.team</field>
@@ -35,10 +35,7 @@
     </record>
    
 
-
-
-
-         <record model="ir.ui.view" id="view_championship_match_form">
+   <record model="ir.ui.view" id="view_championship_match_form">
         <field name="name">championship.match.form</field>
         <field name="model">championship.match</field>
         <field name="arch" type="xml">
@@ -88,20 +85,32 @@
         <field name="model">championship.championship</field>
         <field name="arch" type="xml">
             <form string="championship.championship"  version="7.0">
-<sheet>
-<group string="General">
+		<sheet>
+			<group string="General">
 				<field name="name" />
 				<field name="start_date" />
 				<field name="end_date" /> 
-</group>
-<group string="Teams and Matches">
-				<field name="teams" /> 
+			</group>
+			<group string="Teams and Matches">
+				<field name="teams" type="tree">
+					<tree string="championship.teampoints">
+ 						<!-- <field name="points" /> <field name="championship_id" /> --> 
+						<field name="team_id" />
+						<field name="point_v" />
+						<field name="score" />
+						<field name="conceded" />
+					</tree>
+
+				</field>
+				<button name="populate_championship" string="Put all teams!" type="object"/> 
+				<button name="create_calendar" string="Create Calendar" type="object"/> 
 				<field name="matches" />
-</group>
-</sheet>
+			</group>
+		</sheet>
             </form>
         </field>
     </record>
+
     <record model="ir.ui.view" id="view_championship_championships_tree">
         <field name="name">championship.championships.tree</field>
         <field name="model">championship.championship</field>
@@ -138,7 +147,7 @@
         <field name="model">championship.teampoints</field>
         <field name="arch" type="xml">
             <tree string="championship.teampoints">
- 				<!-- <field name="points" /> <field name="championship_id" /> -->
+ 				<field name="points" /> <field name="championship_id" /> 
 				<field name="team_id" />
 				
 <field name="point_v" />

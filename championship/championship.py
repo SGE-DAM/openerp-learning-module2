@@ -96,6 +96,46 @@ championship_teampoints()
 
 
 class championship_championship(osv.osv):
+	def create_calendar(self,cr, uid, ids, context=None):
+		print "Calendarrrrrrrrrrrrrrrrrr"
+		print ids
+		c=self.browse(cr,uid,ids[0],context=None).id
+		#equips= self.pool.get('championship.team').search(cr,uid,[])
+		
+		self.pool.get('championship.match').unlink(cr, uid, self.pool.get('championship.match').search(cr,uid,[('championship_id','=',c)]), context=None)
+		equips=self.pool.get('championship.teampoints').browse(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
+		print equips
+		equips_aux=[]
+		i=0
+		for e in equips:
+			equips_aux.append(e.team_id.id)
+			i=i+1
+	#	random.shuffle(equips_aux)
+		print '*******************************'
+		print equips_aux
+		for i in range(1, len(equips_aux)): #falta el numero de rondas calcularlo
+			for j in range(0,len(equips_aux)/2):								
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19}, context=None)
+			aux=[]
+			aux.append(equips_aux[0])
+			aux.append(equips_aux[19])
+			for k in range(1,19):
+				aux.append(equips_aux[k])
+			equips_aux=aux
+			print equips_aux
+			
+		return True
+	def populate_championship(self,cr,uid,ids,context=None):
+		print "Populate"
+		c=self.browse(cr,uid,ids[0],context=None).id
+		equips= self.pool.get('championship.team').search(cr,uid,[])
+		self.pool.get('championship.teampoints').unlink(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
+		for e in equips:
+			self.pool.get('championship.teampoints').create(cr, uid, {'championship_id':c,'team_id':e}, context=None)
+		return True
+
+
 	_name = 'championship.championship'
 	_columns = {
 		'name': fields.char('Name', size=32, required=True, help='This is the name of the team'),
