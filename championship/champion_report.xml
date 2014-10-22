@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<report id="championship.match_poster"
+name="championship.match.poster.webkit"
+auto="False"
+model="championship.match"
+file="championship/report/match.mako"
+string="Match"
+report_type="webkit"/>
+</data>
+</openerp>

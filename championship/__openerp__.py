@@ -8,6 +8,6 @@
         "depends" : ['base'],
         "init_xml" : [ ],
         "demo_xml" : [ ],
-        "update_xml" : ['championship_view.xml','equips.xml'],
+        "update_xml" : ['championship_view.xml','equips.xml','champion_report.xml'],
         "installable": True
 }
