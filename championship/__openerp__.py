@@ -5,9 +5,11 @@
         "website" : "http://openerp.com",
         "category" : "Unknown",
         "description": """ Module for a Championship """,
-        "depends" : ['base'],
+        "depends" : ['base','report_webkit'],
         "init_xml" : [ ],
         "demo_xml" : [ ],
-        "update_xml" : ['championship_view.xml','equips.xml','champion_report.xml'],
+        "update_xml" : ['championship_view.xml','equips.xml',
+			'report/header_championship.xml',
+			'champion_report.xml'],
         "installable": True
 }

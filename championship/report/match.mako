@@ -6,13 +6,13 @@ ${css}
   </head>
   <body>
   %for o in objects :
-  
-  <div class="address">
-     <b>${o.date |entity}</b><br/>
+  <div class="ticket" >
+
+     <b>Ticket for the match ${o.date}</b><br/>
   	
-  	<div class="header">
-  		<span class="header" style="width: 20%;">${o.local}</span>
-  		<span class="header" style="width: 10%;">${o.visitor}</span>
+  	<div>
+  		${o.local.name} vs
+  		${o.visitor.name}
   	</div>
   
   
