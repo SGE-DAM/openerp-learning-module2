@@ -101,7 +101,7 @@ class championship_championship(osv.osv):
 		print ids
 		c=self.browse(cr,uid,ids[0],context=None).id
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
-		
+		data_partit=c.start_date
 		self.pool.get('championship.match').unlink(cr, uid, self.pool.get('championship.match').search(cr,uid,[('championship_id','=',c)]), context=None)
 		equips=self.pool.get('championship.teampoints').browse(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
 		print equips
@@ -115,8 +115,8 @@ class championship_championship(osv.osv):
 		print equips_aux
 		for i in range(1, len(equips_aux)): #falta el numero de rondas calcularlo
 			for j in range(0,len(equips_aux)/2):								
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i}, context=None)
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i,'date':data_partit}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19,'date':data_partit}, context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])
@@ -149,6 +149,13 @@ championship_championship()
 
 
 class championship_match(osv.osv):
+	def check_dates (self,cr,uid,ids,context=None):
+		m = self.browse(cr, uid, ids, context=context)
+		for h in m:
+			if (h.date < h.championship_id.start_date) or (h.date > h.championship_id.end_date):
+				return False
+		return True
+  	
 	_name = 'championship.match'
 	_columns = {
 		'date': fields.date('Date'),
@@ -162,4 +169,8 @@ class championship_match(osv.osv):
 		'points_visitor': fields.integer('Points Visitor'),
 
 	}
+	_constraints = [
+		(check_dates,"The date of the match isn't between the dates of the championship", ["date"]),
+	]
+
 championship_match()
