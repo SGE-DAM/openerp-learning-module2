@@ -1,6 +1,7 @@
 from osv import osv, fields
 import random
 from datetime import datetime
+from datetime import timedelta
  
 
 class championship_team(osv.osv):
@@ -101,7 +102,7 @@ class championship_championship(osv.osv):
 		print ids
 		c=self.browse(cr,uid,ids[0],context=None).id
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
-		data_partit=c.start_date
+		data_partit=self.browse(cr,uid,ids[0],context=None).start_date
 		self.pool.get('championship.match').unlink(cr, uid, self.pool.get('championship.match').search(cr,uid,[('championship_id','=',c)]), context=None)
 		equips=self.pool.get('championship.teampoints').browse(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
 		print equips
@@ -114,9 +115,12 @@ class championship_championship(osv.osv):
 		print '*******************************'
 		print equips_aux
 		for i in range(1, len(equips_aux)): #falta el numero de rondas calcularlo
-			for j in range(0,len(equips_aux)/2):								
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i,'date':data_partit}, context=None)
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19,'date':data_partit}, context=None)
+			for j in range(0,len(equips_aux)/2):
+				date_p = datetime.strptime(data_partit, "%Y-%m-%d")
+				date_p = date_p + timedelta(days=7*i)
+				date_p2 = date_p + timedelta(days=7*20)  								
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i,'date':date_p}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19,'date':date_p2}, context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])

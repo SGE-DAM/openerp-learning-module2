@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
+
 <report id="championship.match_poster"
 name="championship.match.poster.webkit"
 auto="False"
 model="championship.match"
+file="championship/report/poster.mako"
+string="Match Poster"
+webkit_header="championship.championship_poster_header"
+report_type="webkit"/>
+
+<report id="championship.match_tiquet"
+name="championship.match.tiquet.webkit"
+auto="False"
+model="championship.match"
 file="championship/report/match.mako"
-string="Match"
+string="Match Tiquets"
 webkit_header="championship.championship_report_header"
 report_type="webkit"/>
 </data>
