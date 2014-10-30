@@ -18,9 +18,6 @@
 		<br/><br/><br/>
 		<br/><br/><br/>
 		
-	  	<div style="height:500px;">${helper.embed_logo_by_name('champion_ball')}</div> 
-		<img src="/root/openerp-learning-module2/championship/report/balon.png" style="height:100px;"/>
-		<img src="/usr/lib/pymodules/python2.7/openerp/addons/championship/report/balon.png" style="height:99px;"/>
 		<table>
 		<tr><td><img src="data:image/png;base64,[${o.local.shield}]" /></td><td></td> 
 		<td><img src="data:image/png;base64,[${o.visitor.shield}]" /></td></tr>

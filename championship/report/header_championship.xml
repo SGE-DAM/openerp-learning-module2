@@ -47,6 +47,7 @@ body {
 	height: 100%;
 	width: 100%;
 	font-size:16px;
+	/* background: url(background: #fff url(data:image/gif;base64,${helper.}; */
 }
 
 .logo { 

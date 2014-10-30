@@ -177,4 +177,5 @@ class championship_match(osv.osv):
 		(check_dates,"The date of the match isn't between the dates of the championship", ["date"]),
 	]
 
+	_order = 'round'
 championship_match()
