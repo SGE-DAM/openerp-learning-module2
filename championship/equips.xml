@@ -1,6 +1,13 @@
 <?xml version="1.0"?> <openerp> <data>
-<record model="res.partner" >
+<record model="res.partner" id="1team">
 <field name="name">ALMERIA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+<field name="title">1</field>
+<field name="use_parent_address">0</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -176,8 +183,12 @@ AdAB2qWiivuDzQooooAKO9FFABRQaKADFFFFABiiiigAxRRRQAUY5oooA5H4qfCfwr8afBd/4U8Y
 hkXjhQN/fAyCUUAfolpmm2mj2FvY2FtDZWVtGsUNvAgSOJAMBVUcAAdhVnFFFABiiiigA6UdaKKA
 E70tFFACE0UUUAf/2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">ATHLETIC</field>
+<record model="res.partner" id="2team">
+<field name="name">ATHLETIC</field><field name="display_name">ATHLETIC</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -346,8 +357,12 @@ g0UAGKKKKADFFFFABiiiigAoxzRRQBzfxD+HXhz4q+EdQ8MeK9Jttb0O/j8ue0uVyD6MD1VgeQww
 QeQa+ZPgt/wTh8J/DP4gR+IvEfiLVfiFY6I+zwlpGvSGW30SEndgKSVdwxODgAYBxu5BRQB9fAdq
 XFFFABiiiigA6UdaKKAE70tFFACE0UUUAf/Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">ATLETICO</field>
+<record model="res.partner" id="3team">
+<field name="name">ATLETICO</field><field name="display_name">ATLETICO</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -487,8 +502,12 @@ oAMUUUUAGKKKKADFFFFABRjmiigClq2j2mt2bWt5Cs0Tdj1B9QexrlfD3wr07Rb+S6mc3pD7oUkU
 AL7kfxGiivn8bkWWY/FUsZiqEZ1IbNr8+jt0vez1R1U8TWpQlThJpM7ZRjilxRRX0ByhiiiigA6U
 daKKAE70tFFACE0UUUAf/9k=</field>
 </record>
-<record model="res.partner" >
-<field name="name">BARCELONA</field>
+<record model="res.partner" id="4team">
+<field name="name">BARCELONA</field><field name="display_name">BARCELONA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -675,8 +694,12 @@ cVCCslslseO25O7CjvRRViCig0UAGKKKKADFFFFABiiiigAoxzRRQBg+OfAmgfEnwvf+HPE+k2ut
 6JfxmK4s7uMOjj19iOoIwQeQQa+N/hb/AMElfhb8Pfi3eeKtRu7vxToEEom0bw5qQDQWjdT5x/5b
 AHG0EAY+9uPNFFAH3HDEkMaxxoscaAKqqMBQOgAp+KKKADFFFFAB0o60UUAJ3paKKAEJooooA//Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">CELTA</field>
+<record model="res.partner" id="5team">
+<field name="name">CELTA</field><field name="display_name">CELTA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -758,8 +781,12 @@ l8PfAP2L9uHxpe+Xi3t7I36HH8c6xjP5tJXNWjzOPqfpPCOZ/UMLmUL2vSbXqvdX/pZ9WClozig1
 RgByPLeU5/Hev5UUUmjenUnCM1F2urP0un+aR0g70YoopmAYooooAOlHWiigBO9LRRQAhNFFFAH/
 2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">CORDOBA</field>
+<record model="res.partner" id="6team">
+<field name="name">CORDOBA</field><field name="display_name">CORDOBA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -876,8 +903,12 @@ igAooNFABiiiigAxR2oooAZiiiigBaTFFFACMgdGVgGVhgg9xXm/wv8AhHN4A1fULu61KPUYkhFh
 pUawlDaWYkeQRsSTubLquRjiJKKKRz1KUJ1ITktVex6TilxRRTOgMUUUUAA607rRRQAneloooAQm
 iiigD//Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">DEPORTIVO</field>
+<record model="res.partner" id="7team">
+<field name="name">DEPORTIVO</field><field name="display_name">DEPORTIVO</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1023,8 +1054,12 @@ r0jw68N4NS1ScX+qlSquF2xW6nqkS9h6scs3c4wBq2Vhb6bapb2lvFbQJwsUKBVX6AVPXfCklq/6
 FW/CXhPTPBGhW+kaRAbexgztVnLEknJJJ7k0UVn7OKlz21K5nbl6GxiiiitCQoxzRRQAdKQ9KKKA
 FFGKKKADFFFFAB0o60UUAJ3paKKAEJooooA//9k=</field>
 </record>
-<record model="res.partner" >
-<field name="name">EIBAR</field>
+<record model="res.partner" id="8team">
+<field name="name">EIBAR</field><field name="display_name">EIBAR</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1146,8 +1181,12 @@ NGUfYtHtFgMuMNPJ1klb/adyzH3au3NeOeqFFFFABRRRQAUd6KKACig0UAGKKKKADFFFFABiiiig
 AoxzRRQAH0r5g8CfsZaN4N/bA8U/FmO6WTTrq2+16bouW2WWo3OUvLhV+6C6xJyOcu+ei0UUAfT4
 70YoooAMUUUUAHSjrRRQAneloooAQmiiigD/2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">ELCHE</field>
+<record model="res.partner" id="9team">
+<field name="name">ELCHE</field><field name="display_name">ELCHE</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1285,8 +1324,12 @@ zvp04YRXesxvhLwrb+FtPMSHzrqUhri5IwZG+nZR0A7fUkndoorWnTjSioQVkjnbcndhRRRWggo7
 rw6j5dzqSNpi8+bEpW4cf3SMbV92HXsF60UV5uKwtGrOMpx1ub06k4ppM9E0vSrTRrKO0soEt7eP
 7qIO/cn1J7k8mreKKK9FJRVlsYt31YYooopiDpR1oooATvS0UUAITRRRQB//2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">ESPANYOL</field>
+<record model="res.partner" id="10team">
+<field name="name">ESPANYOL</field><field name="display_name">ESPANYOL</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1446,8 +1489,12 @@ xWU3/BNnVrobLrxjprwnqDYO/wChYUUV58sHQUvh/Fn6PheNs/qUG54i/wD25D/5HU7Hw1/wTk8P
 Wboda8WX9+i4zFY2yWw+mWL8flXvHw9/Z2+H/wAMWjm0Tw5bLep0vrrM8+fUO+dv/AcUUV2U8NRp
 6xifHZjxRnWZp08ViZOPZe6vmo2TPSMUUUV0nygdKOtFFACd6WiigBCaKKKAP//Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">GETAFE</field>
+<record model="res.partner" id="11team">
+<field name="name">GETAFE</field><field name="display_name">GETAFE</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1643,8 +1690,12 @@ RQAYooooAKq3emWl9xcW0M4/6aIG/nRRUThGouWauvMabWqMqbwJoUxy2nRr/uMy/wAjUY+HugKP
 +PAH6yuf60UV5jyjLpO7w8L/AOGP+Rr7aqvtP7yzb+DtFtjlNNgJHd13fzzWtDbx26BIo0jUfwou
 BRRXZRwuHw/8Gmo+iS/IiU5S+J3JMUUUV1EB0o60UUAJ3paKKAEJooooA//Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">GRANADA</field>
+<record model="res.partner" id="12team">
+<field name="name">GRANADA</field><field name="display_name">GRANADA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1751,8 +1802,12 @@ RQaKADFFFFABiiiigAxTKKKACjqaKKAOF+IPwb0D4g3NvqM32jSPEVqMWmvaVL5F5B7bx95f9lgR
 M4RldRjpdKVtVouZOy622vZ2ukz1T4f/AAy8OfC/Rzp3hzTY7GJzvmmJLzXD/wB+SQ/M59yfpXUC
 iitklFWR4NatUxFR1a0nKT3bd2/mHalHWiimYjulHWiigBO9LRRQAhNFFFAH/9k=</field>
 </record>
-<record model="res.partner" >
-<field name="name">LEVANTE</field>
+<record model="res.partner" id="13team">
+<field name="name">LEVANTE</field><field name="display_name">LEVANTE</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -1933,8 +1988,12 @@ MYEkMg5Rv0PQgjivifTf+CNekLrUNrrHxd8R6r4Et5fNi8PC3EbgZ+6ZfMZB7lYgfTFFFS4xlbmV
 7DTa2PvX4bfDTwz8IvCFj4X8IaPbaHodku2K1tlwM92YnlmPUsxJJ6munxRRVCDFFFFAB0o60UUA
 J3paKKAEJooooA//2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">MALAGA</field>
+<record model="res.partner" id="14team">
+<field name="name">MALAGA</field><field name="display_name">MALAGA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2108,8 +2167,12 @@ RQAYooooAKMc0UUAVtR0+21Wxms7yBLm2nUpJFIMqwPY1w3gP4J6F4C1i71O233dxI5+zmcZ+zIf
 4V9T/tdcceuSiuKrgsPXqwr1YJyhs+xpGpKKcU9GehDvRiiiu0zDFFFFAB0o60UUAJ3paKKAEJoo
 ooA//9k=</field>
 </record>
-<record model="res.partner" >
-<field name="name">RAYO-VALLECANO</field>
+<record model="res.partner" id="15team">
+<field name="name">RAYO-VALLECANO</field><field name="display_name">RAYO-VALLECANO</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2278,8 +2341,12 @@ ax95gs9SwknX1nHbz7f8E1/hn8KrXwjBHe3yJc6wwyXIysH+yvv6n8q9CxRnFBr94y3LMLlGGjhM
 HDlivvb7t9W+58XiMRUxVR1aru2FFFFeocwUUUUAFHeiigAooNFABiiiigAxRRRQAYooooAKMc0U
 UABpD0oooAUd6MUUUAGKKKKADpR1oooATvS0UUAITRRRQB//2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">REAL-MADRID</field>
+<record model="res.partner" id="16team">
+<field name="name">REAL-MADRID</field><field name="display_name">REAL-MADRID</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2455,8 +2522,12 @@ Xjhv9Z8VrcL6xeGow36zkfpRRXkSybKpvmlg6V/+vcP/AJE7lj8ZFWVef/gcv8zTsP2OrW5YHxF8
 QPFGsr/Fb2ksWnxN7EQoHx/wKvTvAPwN8C/DFzL4d8NWVjdnhr51M10/+9M5Ln86KK9KhSpYWDp4
 eEYRfSMVFfdFJHJUnOq+arJyfdtt/jc7rFFFFaEh0o60UUAJ3paKKAEJooooA//Z</field>
 </record>
-<record model="res.partner" >
-<field name="name">REAL-SOCIEDAD</field>
+<record model="res.partner" id="17team">
+<field name="name">REAL-SOCIEDAD</field><field name="display_name">REAL-SOCIEDAD</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2650,8 +2721,12 @@ ttT1WIgrqWuyPqE6t/eUylgh/wBwLXuqoEUKoAUDAA7UUVyNuTvJ3ZaSWwuKKKKQw6VU1bSrLXtM
 utO1G0hvrC7iaG4triMPHLGwwysp4IIyCDRRQBjfD/4c+GPhZ4ZtfD3hHQ7Lw/o1sP3dnYxBFz3Y
 92Y92OSe5rpKKKAEJooooA//2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">SEVILLA</field>
+<record model="res.partner" id="18team">
+<field name="name">SEVILLA</field><field name="display_name">SEVILLA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2812,8 +2887,12 @@ AUUUUAFGaKKAOd8e+ANB+Jnhe88P+JNOi1PS7oDfFJkFWHKujDBR1PIZSCCMg18+/Dj9hbR/DXjO
 TVPFGuyeMNIsZhJpOl3VsI1GOVe7IJE7qeF4VONxUtjaUVz1MPRqzjUqQTcdm1sbQrVKcZQhJpPf
 zPqNQFAAGABS0UV0GIdKKKKADtRRRQAdaKKKACiiigD/2Q==</field>
 </record>
-<record model="res.partner" >
-<field name="name">VALENCIA</field>
+<record model="res.partner" id="19team">
+<field name="name">VALENCIA</field><field name="display_name">VALENCIA</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
@@ -2956,8 +3035,12 @@ guePQfWiivHxuS5bmc41MbhoVJR2coptfNrbyOinia1JWhNpep638Gf+Cdfg/wAGeJB4v+IGrXfx
 S8aGQTm71hcWkcnXcsBLbiD0LlgMDAFfWqoEUKoAUDAA7UUV60IRpxUIKyWyWyMZScneTuxcUUUV
 RIdKOtFFACd6WiigBCaKKKAP/9k=</field>
 </record>
-<record model="res.partner" >
-<field name="name">VILLARREAL</field>
+<record model="res.partner" id="20team">
+<field name="name">VILLARREAL</field><field name="display_name">VILLARREAL</field>
+<field name="isteam">True</field>
+<field name="is_company">True</field>
+
+
 <field name="shield">/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcg
 SlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwK
 DAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQU
