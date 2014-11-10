@@ -5,10 +5,11 @@ from datetime import timedelta
  
 
 class championship_team(osv.osv):
-
-	_name = 'championship.team'
+	_inherit = 'res.partner'
+	#_name = 'championship.team'
 	_columns = {
-		'name': fields.char('Name', size=32, required=True, help='This is the name of the team'),
+		'isteam' : fields.boolean('Is Team'),
+		#'name': fields.char('Name', size=32, required=True, help='This is the name of the team'),
 		'shield': fields.binary('Shield'),
 		#'points': fields.function(_get_points,type='Integer',string='Points', store=False),
 	}
@@ -35,8 +36,8 @@ class championship_teampoints(osv.osv):
 			res[h.id] = punts
 
 			# Necessite actualitzar tambe el camp point_v per poder ordenar self.write(cr, uid, [166, 299], {'fac_id': 21})
-			print h.id
-			print punts
+		#	print h.id
+		#	print punts
 			self.write(cr, uid, [h.id], {'point_v': punts})
 
 			
@@ -83,7 +84,7 @@ class championship_teampoints(osv.osv):
 	_name = 'championship.teampoints'
 	_columns = {
 		'championship_id' : fields.many2one('championship.championship','Championship'),
-		'team_id' : fields.many2one('championship.team','Team'),
+		'team_id' : fields.many2one('res.partner','Team'),
 		'points' : fields.function(_get_points,type='integer',string='Points', store=False),
 		'point_v' : fields.integer('Points'),
 		'score' : fields.function(_get_golsf,type='integer',string='Acumulated Score', store=False),
@@ -98,7 +99,7 @@ championship_teampoints()
 
 class championship_championship(osv.osv):
 	def create_calendar(self,cr, uid, ids, context=None):
-		print "Calendarrrrrrrrrrrrrrrrrr"
+		print "******Generar calendari ***********************************"
 		print ids
 		c=self.browse(cr,uid,ids[0],context=None).id
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
@@ -119,8 +120,16 @@ class championship_championship(osv.osv):
 				date_p = datetime.strptime(data_partit, "%Y-%m-%d")
 				date_p = date_p + timedelta(days=7*i)
 				date_p2 = date_p + timedelta(days=7*20)  								
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j],'visitor':equips_aux[j+10],'round':i,'date':date_p}, context=None)
-				self.pool.get('championship.match').create(cr, uid, {'championship_id':c,'local':equips_aux[j+10],'visitor':equips_aux[j],'round':i+19,'date':date_p2}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {
+									'championship_id':c,
+									'local':equips_aux[j],
+									'visitor':equips_aux[j+10],
+									'round':i,'date':date_p}, context=None)
+				self.pool.get('championship.match').create(cr, uid, {
+									'championship_id':c,
+									'local':equips_aux[j+10],
+									'visitor':equips_aux[j],
+									'round':i+19,'date':date_p2}, context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])
@@ -130,10 +139,11 @@ class championship_championship(osv.osv):
 			print equips_aux
 			
 		return True
+
 	def populate_championship(self,cr,uid,ids,context=None):
 		print "Populate"
 		c=self.browse(cr,uid,ids[0],context=None).id
-		equips= self.pool.get('championship.team').search(cr,uid,[])
+		equips= self.pool.get('res.partner').search(cr,uid,[])
 		self.pool.get('championship.teampoints').unlink(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
 		for e in equips:
 			self.pool.get('championship.teampoints').create(cr, uid, {'championship_id':c,'team_id':e}, context=None)
@@ -165,8 +175,8 @@ class championship_match(osv.osv):
 		'date': fields.date('Date'),
 		'championship_id': fields.many2one('championship.championship','Championship'),
 		'round': fields.integer('Round'),
-		'local': fields.many2one('championship.team','Local Team'),
-		'visitor': fields.many2one('championship.team','Visitor Team'),
+		'local': fields.many2one('res.partner','Local Team'),
+		'visitor': fields.many2one('res.partner','Visitor Team'),
 		'score_local': fields.integer('Score Local'),
 		'score_visitor': fields.integer('Score Visitor'),
 		'points_local': fields.integer('Points Local'),

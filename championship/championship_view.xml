@@ -4,7 +4,7 @@
 
     <record model="ir.ui.view" id="view_championship_team_form">
         <field name="name">championship.team.form</field>
-        <field name="model">championship.team</field>
+        <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <form string="championship.team" version="7.0">
 		<sheet>
@@ -20,16 +20,16 @@
 
     <record model="ir.ui.view" id="view_championship_team_tree">
         <field name="name">championship.team.tree</field>
-        <field name="model">championship.team</field>
+        <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <tree string="championship.team">
 				<field name="name" />
             </tree>
         </field>
-    </record>
+    </record> 
     <record model="ir.actions.act_window" id="action_championship_team">
         <field name="name">Teams</field>
-        <field name="res_model">championship.team</field>
+        <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form,calendar</field>
     </record>
