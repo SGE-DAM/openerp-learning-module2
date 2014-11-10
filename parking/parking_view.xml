@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+   <record model="ir.ui.view" id="view_parking_car_form">
+        <field name="name">parking.car.form</field>
+        <field name="model">parking.car</field>
+        <field name="arch" type="xml">
+            <form string="parking.car">
+                        <field name="name" />
+                        <field name="tickets" />
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_parking_car_tree">
+        <field name="name">parking.car.tree</field>
+        <field name="model">parking.car</field>
+        <field name="arch" type="xml">
+            <tree string="parking.car">
+                       <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+
+   <record model="ir.ui.view" id="view_parking_place_form">
+        <field name="name">parking.place.form</field>
+        <field name="model">parking.place</field>
+        <field name="arch" type="xml">
+            <form string="parking.place">
+                        <field name="num" /><field name="level"/>
+                        <field name="tickets" />
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_parking_place_tree">
+        <field name="name">parking.place.tree</field>
+        <field name="model">parking.place</field>
+        <field name="arch" type="xml">
+            <tree string="parking.place">
+                        <field name="num" /><field name="level"/><field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+   <record model="ir.ui.view" id="view_parking_ticket_form">
+        <field name="name">parking.ticket.form</field>
+        <field name="model">parking.ticket</field>
+        <field name="arch" type="xml">
+            <form string="parking.ticket">
+                        <field name="car" />
+                        <field name="place" />
+                       <field name="price" />
+			
+                       <field name="date_in" />
+                       <field name="date_out" />
+			<field name="payment"/>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_parking_ticket_tree">
+        <field name="name">parking.ticket.tree</field>
+        <field name="model">parking.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="parking.ticket">
+                       
+                        <field name="car" />
+                        <field name="place" />
+                       <field name="price" />
+			
+			<field name="payment"/>
+                       <field name="date_in" />
+                       <field name="date_out" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_parking_car">
+        <field name="name">car</field>
+        <field name="res_model">parking.car</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>   
+
+
+    <record model="ir.actions.act_window" id="action_parking_place">
+        <field name="name">place</field>
+        <field name="res_model">parking.place</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>  
+
+
+    <record model="ir.actions.act_window" id="action_parking_ticket">
+        <field name="name">ticket</field>
+        <field name="res_model">parking.ticket</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>  
+   
+
+  <menuitem name="Parking" id="menu_parking"/>
+  <menuitem name="Management" id="menu_parking_management"  parent="menu_parking"/>
+  <menuitem name="Cars" id="menu_parking_cars" action="action_parking_car" parent="menu_parking_management"/>
+  <menuitem name="Places" id="menu_parking_places" action="action_parking_place" parent="menu_parking_management"/>
+  <menuitem name="Tickets" id="menu_parking_tickets" action="action_parking_ticket" parent="menu_parking_management"/>
+  
+        
+</data>
+</openerp>
