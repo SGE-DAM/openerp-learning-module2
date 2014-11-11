@@ -9,8 +9,9 @@
             <form string="championship.team" version="7.0">
 		<sheet>
 			<group>
-				<field name="shield" widget="image" class="oe_left oe_avatar"/>
+				<field name="image" widget="image" class="oe_left oe_avatar"/>
 				<field name="name" />
+				<field name="isteam"/>
 			</group>
 		</sheet>
 
@@ -31,9 +32,22 @@
         <field name="name">Teams</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form</field>
+	<field name="domain">[('isteam','=',True)]</field>
     </record>
-   
+  <record model="ir.actions.act_window.view" id="act_team_tree_view">
+    <field eval="1" name="sequence"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="view_championship_team_tree"/>
+    <field name="act_window_id" ref="action_championship_team"/>
+</record>
+
+<record model="ir.actions.act_window.view" id="act_team_form_view">
+    <field eval="2" name="sequence"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_championship_team_form"/>
+    <field name="act_window_id" ref="action_championship_team"/>
+</record> 
 
    <record model="ir.ui.view" id="view_championship_match_form">
         <field name="name">championship.match.form</field>

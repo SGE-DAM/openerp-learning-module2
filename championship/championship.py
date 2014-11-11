@@ -10,7 +10,7 @@ class championship_team(osv.osv):
 	_columns = {
 		'isteam' : fields.boolean('Is Team'),
 		#'name': fields.char('Name', size=32, required=True, help='This is the name of the team'),
-		'shield': fields.binary('Shield'),
+		#'shield': fields.binary('Shield'),
 		#'points': fields.function(_get_points,type='Integer',string='Points', store=False),
 	}
 championship_team()
@@ -143,12 +143,11 @@ class championship_championship(osv.osv):
 	def populate_championship(self,cr,uid,ids,context=None):
 		print "Populate"
 		c=self.browse(cr,uid,ids[0],context=None).id
-		equips= self.pool.get('res.partner').search(cr,uid,[])
+		equips= self.pool.get('res.partner').search(cr,uid,[('isteam','=','True')])
 		self.pool.get('championship.teampoints').unlink(cr, uid, self.pool.get('championship.teampoints').search(cr,uid,[('championship_id','=',c)]), context=None)
 		for e in equips:
 			self.pool.get('championship.teampoints').create(cr, uid, {'championship_id':c,'team_id':e}, context=None)
 		return True
-
 
 	_name = 'championship.championship'
 	_columns = {
