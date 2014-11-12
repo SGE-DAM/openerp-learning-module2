@@ -12,6 +12,7 @@
 				<field name="image" widget="image" class="oe_left oe_avatar"/>
 				<field name="name" />
 				<field name="isteam"/>
+				<field name="players"/>
 			</group>
 		</sheet>
 
@@ -35,6 +36,7 @@
         <field name="view_mode">tree,form</field>
 	<field name="domain">[('isteam','=',True)]</field>
     </record>
+
   <record model="ir.actions.act_window.view" id="act_team_tree_view">
     <field eval="1" name="sequence"/>
     <field name="view_mode">tree</field>
@@ -49,6 +51,79 @@
     <field name="act_window_id" ref="action_championship_team"/>
 </record> 
 
+
+    <record model="ir.ui.view" id="view_championship_player_form">
+        <field name="name">championship.player.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="championship.player" version="7.0">
+		<sheet>
+			<group>
+				<field name="image" widget="image" class="oe_left oe_avatar"/>
+				<field name="name" />
+				<field name="isplayer"/>
+				<field name="position" />
+				<field name="country" />
+				<field name="born_date" />
+				<field name="team_id"/>
+				<field name="matches"/>
+			</group>
+		</sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_championship_player_tree">
+        <field name="name">championship.player.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="championship.player">
+				<field name="name" />
+				<field name="team_id" />
+				<field name="position" />
+				<field name="country" />
+				<field name="born_date" />
+            </tree>
+        </field>
+    </record> 
+    <record model="ir.actions.act_window" id="action_championship_player">
+        <field name="name">Players</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+	<field name="domain">[('isplayer','=',True)]</field>
+    </record>
+
+  <record model="ir.actions.act_window.view" id="act_player_tree_view">
+    <field eval="1" name="sequence"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="view_championship_player_tree"/>
+    <field name="act_window_id" ref="action_championship_player"/>
+</record>
+
+<record model="ir.actions.act_window.view" id="act_player_form_view">
+    <field eval="2" name="sequence"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_championship_player_form"/>
+    <field name="act_window_id" ref="action_championship_player"/>
+</record> 
+
+
+   <record model="ir.ui.view" id="view_championship_alignment_form">
+        <field name="name">championship.alignment.form</field>
+        <field name="model">championship.alignment</field>
+        <field name="arch" type="xml">
+            <form string="championship.alignment">
+			<field name="players" />
+			<field name="team" />
+			<field name="match_id" />
+
+
+            </form>
+        </field>
+    </record>
+
    <record model="ir.ui.view" id="view_championship_match_form">
         <field name="name">championship.match.form</field>
         <field name="model">championship.match</field>
@@ -61,8 +136,11 @@
 			<field name="visitor" />
 			<field name="score_local" />
 			<field name="score_visitor" />
+			<field name="players_local" />
+			<field name="players_visitor" />
 			<field name="points_local" />
 			<field name="points_visitor" />
+
 
             </form>
         </field>
@@ -107,13 +185,15 @@
 			</group>
 			<group string="Teams and Matches">
 				<field name="teams" type="tree">
-					<tree string="championship.teampoints">
+					<tree string="sale.order">
  						<!-- <field name="points" /> <field name="championship_id" /> --> 
-						<field name="team_id" />
+						<field name="partner_id" />
 						<field name="points" invisible="1" />
+						
 						<field name="point_v" />
 						<field name="score" />
 						<field name="conceded" />
+						<field name="state" invisible="1"/>
 					</tree>
 
 				</field>
@@ -148,22 +228,22 @@
 
          <record model="ir.ui.view" id="view_championship_teampoints_form">
         <field name="name">championship.teampoints.form</field>
-        <field name="model">championship.teampoints</field>
+        <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <form string="championship.teampoints">
  				<field name="championship_id" /> 
-				<field name="team_id" />
+				<field name="partner_id" />
 
             </form>
         </field>
     </record>
     <record model="ir.ui.view" id="view_championship_teampoints_tree">
         <field name="name">championship.teampoints.tree</field>
-        <field name="model">championship.teampoints</field>
+        <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <tree string="championship.teampoints">
  				<field name="points" /> <field name="championship_id" /> 
-				<field name="team_id" />
+				<field name="partner_id" />
 				
 <field name="point_v" />
 				<field name="score" />
@@ -174,7 +254,7 @@
     </record>
     <record model="ir.actions.act_window" id="action_championship_teampoints">
         <field name="name">teampoints</field>
-        <field name="res_model">championship.teampoints</field>
+        <field name="res_model">sale.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>  
@@ -183,6 +263,7 @@
   <menuitem name="Championship" id="menu_championship"/>
   <menuitem name="Management" id="menu_championship_management"  parent="menu_championship"/>
   <menuitem name="Teams" id="menu_championship_teams" action="action_championship_team" parent="menu_championship_management"/>
+  <menuitem name="Players" id="menu_championship_players" action="action_championship_player" parent="menu_championship_management"/>
   <menuitem name="Matches" id="menu_championship_matches" action="action_championship_match" parent="menu_championship_management"/>
   <menuitem name="Championships" id="menu_championship_championships" action="action_championship_championships" parent="menu_championship_management"/>
   <menuitem name="teampoints" id="menu_championship_teampoints" action="action_championship_teampoints" parent="menu_championship_management"/>
