@@ -229,12 +229,21 @@
          <record model="ir.ui.view" id="view_championship_teampoints_form">
         <field name="name">championship.teampoints.form</field>
         <field name="model">sale.order</field>
+	<field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <form string="championship.teampoints">
- 				<field name="championship_id" /> 
-				<field name="partner_id" />
+	<notebook position="inside" >
+		<page string="Champion" >
+		 <group> 
 
-            </form>
+				<field name="championship_id" /> 
+ 				<field name="points" invisible="1"/> 
+				<field name="point_v"/>
+				<field name="score"  />
+				<field name="conceded" />
+		</group></page>
+	</notebook> 
+
+         
         </field>
     </record>
     <record model="ir.ui.view" id="view_championship_teampoints_tree">
@@ -242,10 +251,10 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <tree string="championship.teampoints">
- 				<field name="points" /> <field name="championship_id" /> 
+ 				<field name="points" invisible="1"/> 
+				<field name="championship_id" /> 
 				<field name="partner_id" />
-				
-<field name="point_v" />
+				<field name="point_v" />
 				<field name="score" />
 				<field name="conceded" />
 
@@ -257,6 +266,7 @@
         <field name="res_model">sale.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+	<field name="domain">[('isteam','=',True)]</field>
     </record>  
    
 

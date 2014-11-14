@@ -77,12 +77,13 @@ class championship_teampoints(osv.osv):
 	_inherit = 'sale.order'
 	#_name = 'championship.teampoints'
 	_columns = {
+		'isteam' : fields.boolean('Team enrole'),
 		'championship_id' : fields.many2one('championship.championship','Championship'),
 	#	'team_id' : fields.many2one('res.partner','Team'),
 		'points' : fields.function(_get_points,type='integer',string='Points', store=False),
-		'point_v' : fields.integer('Points'),
-		'score' : fields.integer('Score'),
-		'conceded' : fields.integer('Conceded'),
+		'point_v' : fields.integer('Points',readonly=True),
+		'score' : fields.integer('Score', readonly=True),
+		'conceded' : fields.integer('Conceded', readonly=True),
         
 	}
 	_order = 'point_v desc'
@@ -140,7 +141,12 @@ class championship_championship(osv.osv):
 		equips= self.pool.get('res.partner').search(cr,uid,[('isteam','=','True')])
 		self.pool.get('sale.order').unlink(cr, uid, self.pool.get('sale.order').search(cr,uid,[('championship_id','=',c)]), context=None)
 		for e in equips:
-			self.pool.get('sale.order').create(cr, uid, {'championship_id':c,'partner_id':e,'partner_invoice_id':e,'partner_shipping_id':e,'pricelist_id':1}, context=None)
+			self.pool.get('sale.order').create(cr, uid, {'championship_id':c,
+									'partner_id':e,
+									'partner_invoice_id':e,
+									'partner_shipping_id':e,
+									'pricelist_id':1,
+									'isteam':True}, context=None)
 		return True
 
 	_name = 'championship.championship'
@@ -166,7 +172,7 @@ class championship_match(osv.osv):
 	_name = 'championship.match'
 	_columns = {
 		'date': fields.date('Date'),
-		'championship_id': fields.many2one('sale.order','Championship'),
+		'championship_id': fields.many2one('championship.championship','Championship'),
 		'round': fields.integer('Round'),
 		'local': fields.many2one('res.partner','Local Team'),
 		'visitor': fields.many2one('res.partner','Visitor Team'),
