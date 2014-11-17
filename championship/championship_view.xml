@@ -126,7 +126,7 @@
 
    <record model="ir.ui.view" id="view_championship_match_form">
         <field name="name">championship.match.form</field>
-        <field name="model">championship.match</field>
+        <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
             <form string="championship.match">
 			<field name="date" />
@@ -147,7 +147,7 @@
     </record>
     <record model="ir.ui.view" id="view_championship_match_tree">
         <field name="name">championship.match.tree</field>
-        <field name="model">championship.match</field>
+        <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
             <tree string="championship.match">
 			<field name="date" />
@@ -164,7 +164,7 @@
     </record>
     <record model="ir.actions.act_window" id="action_championship_match">
         <field name="name">match</field>
-        <field name="res_model">championship.match</field>
+        <field name="res_model">sale.order.line</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form,calendar</field>
     </record>   

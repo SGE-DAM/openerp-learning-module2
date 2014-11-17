@@ -99,8 +99,10 @@ class championship_championship(osv.osv):
 		c=self.browse(cr,uid,ids[0],context=None).id #obtindre el campionat
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
 		data_partit=self.browse(cr,uid,ids[0],context=None).start_date
-		self.pool.get('sale.order.line').unlink(cr, uid, self.pool.get('sale.order.line').search(cr,uid,[('championship_id','=',c)]), context=None)
-		equips=self.pool.get('sale.order').browse(cr, uid, self.pool.get('sale.order').search(cr,uid,[('championship_id','=',c)]), context=None)
+		s_o_l=self.pool.get('sale.order.line')
+		s_o=self.pool.get('sale.order')
+		s_o_l.unlink(cr, uid, s_o_l.search(cr,uid,[('championship_id','=',c)]), context=None)
+		equips=s_o.browse(cr, uid, s_o.search(cr,uid,[('championship_id','=',c)]), context=None)
 		print equips
 		equips_aux=[]
 		i=0
@@ -114,19 +116,30 @@ class championship_championship(osv.osv):
 			for j in range(0,len(equips_aux)/2):
 				date_p = datetime.strptime(data_partit, "%Y-%m-%d")
 				date_p = date_p + timedelta(days=7*i)
-				date_p2 = date_p + timedelta(days=7*20)  								
-				self.pool.get('sale.order.line').create(cr, uid, {
-									'name': equips_aux[j]+"vs"+equips_aux[j+10],
-									'order_id':  
-									'championship_id':c,
-									'local':equips_aux[j],
-									'visitor':equips_aux[j+10],
-									'round':i,'date':date_p}, context=None)
-				self.pool.get('sale.order.line').create(cr, uid, {
-									'championship_id':c,
-									'local':equips_aux[j+10],
-									'visitor':equips_aux[j],
-									'round':i+19,'date':date_p2}, context=None)
+				date_p2 = date_p + timedelta(days=7*20)
+				order1= s_o.browse(cr, uid, s_o.search(cr,uid,['&',('championship_id','=',c),('partner_id','=',equips_aux[j])]), context=None)
+				order1=order1[0] 
+				order2= s_o.browse(cr, uid, s_o.search(cr,uid,['&',('championship_id','=',c),('partner_id','=',equips_aux[19-j])]), context=None)
+				order2=order2[0]
+				print order1.partner_id.name+"vs"+order2.partner_id.name 
+				s_o_l.create(cr, uid, {
+							'name': order1.partner_id.name+"vs"+order2.partner_id.name,
+							'order_id': order1.id,  
+							'championship_id':c,
+							'local':equips_aux[j],
+							'visitor':equips_aux[19-j],
+							'round':i,
+							'price_unit': 1000,
+							'date':date_p}, context=None)
+				s_o_l.create(cr, uid, {
+							'name': order2.partner_id.name+"vs"+order1.partner_id.name,
+							'order_id': order2.id,  
+							'championship_id':c,
+							'local':equips_aux[19-j],
+							'visitor':equips_aux[j],
+							'price_unit': 1000,
+							'round':i+19,
+							'date':date_p2}, context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])
@@ -168,7 +181,7 @@ class championship_championship(osv.osv):
 		'teams': fields.one2many('sale.order','championship_id','Teams'),
 		'start_date': fields.date('Start Date'),
 		'end_date': fields.date('End Date'),
-		'matches': fields.one2many('championship.match','championship_id','Matches'),
+		'matches': fields.one2many('sale.order.line','championship_id','Matches'),
 	}
 
 championship_championship()
