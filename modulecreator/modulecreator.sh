@@ -20,21 +20,32 @@ echo -e "Create module with this models: [34m$models[0m"
 echo "Let's make the models"
 
 python="from osv import osv, fields\n\n"
+xml="<?xml version="1.0"?>\n<openerp>\n<data>\n\n"
+xml="$xml<menuitem name=\"$name\" id=\"menu_$name\"/>\n<menuitem name=\"Management\" id=\"menu_${name}_management\"  parent=\"menu_$name\"/>\n\n"
+
 for model in $models
 do
 	echo "Model: [34m$model[0m"
 	fields=""
 	field=""
 	
+	recordform="\t<record model=\"$name.$model\" id=\"view_${name}_${model}_form\">\n\t\t<field name=\"name\">$name.$model.form</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<form string=\"$name.$model\" version=\"7.0\">\n\t\t\t<sheet>\n\t\t\t\t<group>\n"
+	recordtree="\t<record model=\"$name.$model\" id=\"view_${name}_${model}_tree\">\n\t\t<field name=\"name\">$name.$model.tree</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<tree string=\"$name.$model\">\n"
+	fieldsxml=""
+
+	functions=""
+	
 	while [[ $field != "0" ]]; do
 		read -p "  Field name (0 for finish): " field
 		if [[ $field != "0" ]]; then
-			read -p "  Type [i]nteger [v]archar [b]oolean [F]loat [m]any2one [o]ne2many [mm]any2many [f]unction [r]elated [b]inary: " t
+			fieldsxml="$fieldsxml\t\t\t<field name=\"$field\"/>\n" 
+			read -p "  Type [i]nteger [v]archar [b]oolean [F]loat [m]any2one [o]ne2many [mm]any2many [f]unction [b]inary: " t
 			read -p "  Display name: " display
 			read -p "  Required True or [False]: " req;  req=${req:-False}
 			case "$t" in
 				i)
-					field="'$field' : fields.integer('$display',required=$req)," 
+					field="'$field' : fields.integer('$display',required=$req),"
+
 					;;
 				v)
 					field="'$field' : fields.varchar('$display',required=$req)," 
@@ -65,6 +76,11 @@ do
 				b)
 					field="'$field' : fields.binary('$display',required=$req)," 
 					;;
+				f)
+					functions="$functions\n\tdef _get_$field(self,cr, uid, ids, context=None):\n\t\tres={}\n\t\treturn res\n" 
+					field="'$field' : fields.function(_get_$field,type='integer',string='$display', store=False),"
+
+					;;
 			esac	
 			if [[ $fields == "" ]]; then 
 				fields="\t\t$field"
@@ -74,17 +90,44 @@ do
 		fi
 		echo ""
 	done
-	modelpython="class ${name}_$model(osv.osv):\n\t_name = '$name.$model'\n\t_columns = {\n$fields\n\t}\n${name}_$model()\n\n"
+	
+	modelpython="class ${name}_$model(osv.osv):$functions\n\t_name = '$name.$model'\n\t_columns = {\n$fields\n\t}\n${name}_$model()\n\n"
 	echo -e "[1;37m$modelpython[0m"
 	python=$python$modelpython
+
+	recordform="$recordform$fieldsxml\n\t\t</group></sheet></form></field></record>\n\n"
+	recordtree="$recordtree$fieldsxml\n\t\t</tree></field></record>\n\n"
+	actionxml=" <record model=\"ir.actions.act_window\" id=\"action_${name}_$model\">\n\t<field name=\"name\">$model</field>\n\t<field name=\"res_model\">$name.$model</field>\n\t<field name=\"view_type\">form</field>\n\t<field name=\"view_mode\">tree,form</field>\n</record>\n\n"
+	menuxml="<menuitem name=\"$model\" id=\"menu_${name}_$model\" action=\"action_${name}_$model\" parent=\"menu_${name}_management\"/>\n\n"
+
+	xml=$xml$recordform$recordtree$actionxml$menuxml
 done
 
-echo -e "$python"
+xml="$xml</data></openerp>"
+#echo -e "$python"
+#echo -e "$xml"
 
-# XML
+# Creation:
 
-xml="<?xml version="1.0"?>\n<openerp>\n<data>\n\n"
+mkdir $name
+echo -e "$python" > $name/$name.py
+echo -e "$xml" > $name/view_$name.xml
 
-for model in models; do
-recordf="\t<record model=\"ir.ui.view\" id=\"view_championship_team_form\">\n\t\t<field name=\"name\">championship.team.form</field>\n\t\t<field name=\"model\">res.partner</field><field name=\"arch\" type=\"xml\">\n\t\t<form string=\"championship.team\" version=\"7.0\">\n\t\t\t<sheet>\n\t\t\t\t<group>"
-	for field in $(echo $python | sed -n '/${name}_$model/,/${name}_${model}()/p')
+echo "import $name" > $name/__init__.py
+
+cat << EOF > $name/__openerp__.py
+{
+        "name" : "$name",
+        "version" : "0.1",
+        "author" : "Model Generator",
+        "website" : "http://openerp.com",
+        "category" : "Unknown",
+        "description": """ Module generated change description """,
+        "depends" : ['base'],
+        "init_xml" : [ ],
+        "demo_xml" : [ ],
+        "update_xml" : ['view_$name.xml'],
+        "installable": True
+}
+EOF
+
