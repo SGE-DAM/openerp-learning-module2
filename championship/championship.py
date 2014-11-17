@@ -35,7 +35,7 @@ class championship_alignment(osv.osv):
 	_columns = {
 		'players' : fields.many2many('res.partner','player_alignment','align_id','player_id','Players'),
 		'team' : fields.many2one('res.partner','Team'),
-		'match_id' : fields.many2one('championship.match','Match'),
+		'match_id' : fields.many2one('sale.order.line','Match'),
 	}
 championship_team()
 
@@ -51,10 +51,10 @@ class championship_teampoints(osv.osv):
 			team = h.partner_id.id
 			champ = h.championship_id.id
 
-			p_local = self.pool.get('championship.match').search(cr,uid,['&',('championship_id','=',champ),('local','=',team)])
-			p_visitor = self.pool.get('championship.match').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team)])
-			partits_local = self.pool.get('championship.match').browse(cr,uid,p_local,context=None)
-			partits_visitor = self.pool.get('championship.match').browse(cr,uid,p_visitor,context=None)
+			p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team)])
+			p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team)])
+			partits_local = self.pool.get('sale.order.line').browse(cr,uid,p_local,context=None)
+			partits_visitor = self.pool.get('sale.order.line').browse(cr,uid,p_visitor,context=None)
 			for p in partits_local:
 				punts = punts + p.points_local
 				golsf = golsf + p.score_local
@@ -99,7 +99,7 @@ class championship_championship(osv.osv):
 		c=self.browse(cr,uid,ids[0],context=None).id #obtindre el campionat
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
 		data_partit=self.browse(cr,uid,ids[0],context=None).start_date
-		self.pool.get('championship.match').unlink(cr, uid, self.pool.get('championship.match').search(cr,uid,[('championship_id','=',c)]), context=None)
+		self.pool.get('sale.order.line').unlink(cr, uid, self.pool.get('sale.order.line').search(cr,uid,[('championship_id','=',c)]), context=None)
 		equips=self.pool.get('sale.order').browse(cr, uid, self.pool.get('sale.order').search(cr,uid,[('championship_id','=',c)]), context=None)
 		print equips
 		equips_aux=[]
@@ -115,12 +115,14 @@ class championship_championship(osv.osv):
 				date_p = datetime.strptime(data_partit, "%Y-%m-%d")
 				date_p = date_p + timedelta(days=7*i)
 				date_p2 = date_p + timedelta(days=7*20)  								
-				self.pool.get('championship.match').create(cr, uid, {
+				self.pool.get('sale.order.line').create(cr, uid, {
+									'name': equips_aux[j]+"vs"+equips_aux[j+10],
+									'order_id':  
 									'championship_id':c,
 									'local':equips_aux[j],
 									'visitor':equips_aux[j+10],
 									'round':i,'date':date_p}, context=None)
-				self.pool.get('championship.match').create(cr, uid, {
+				self.pool.get('sale.order.line').create(cr, uid, {
 									'championship_id':c,
 									'local':equips_aux[j+10],
 									'visitor':equips_aux[j],
@@ -149,6 +151,16 @@ class championship_championship(osv.osv):
 									'isteam':True}, context=None)
 		return True
 
+	def print_championship(self,cr,uid,ids,context=None):
+		print "Championship"
+		c=self.browse(cr,uid,ids[0],context=None).id
+		equips= self.pool.get('res.partner').search(cr,uid,[('isteam','=','True')])
+		teams= self.pool.get('res.partner').browse(cr,uid,equips,context=context)
+		for t in teams:
+			print t.name
+			#partits=self.pool.get('').search(cr,uid,[('isteam','=','True')])
+		return True
+
 	_name = 'championship.championship'
 	_columns = {
 		'name': fields.char('Name', size=32, required=True, help='This is the name of the team'),
@@ -158,6 +170,7 @@ class championship_championship(osv.osv):
 		'end_date': fields.date('End Date'),
 		'matches': fields.one2many('championship.match','championship_id','Matches'),
 	}
+
 championship_championship()
 
 
@@ -169,7 +182,8 @@ class championship_match(osv.osv):
 				return False
 		return True
   	
-	_name = 'championship.match'
+	_inherit = 'sale.order.line'
+	#_name = 'championship.match'
 	_columns = {
 		'date': fields.date('Date'),
 		'championship_id': fields.many2one('championship.championship','Championship'),

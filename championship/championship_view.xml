@@ -183,6 +183,11 @@
 				<field name="start_date" />
 				<field name="end_date" /> 
 			</group>
+			<group>
+				<button name="populate_championship" string="Put all teams!" type="object"/> 
+				<button name="create_calendar" string="Create Calendar" type="object"/> 
+				<button name="print_championship" string="Print" type="object"/> 
+			</group>
 			<group string="Teams and Matches">
 				<field name="teams" type="tree">
 					<tree string="sale.order">
@@ -197,8 +202,7 @@
 					</tree>
 
 				</field>
-				<button name="populate_championship" string="Put all teams!" type="object"/> 
-				<button name="create_calendar" string="Create Calendar" type="object"/> 
+
 				<field name="matches" />
 			</group>
 		</sheet>
