@@ -81,10 +81,10 @@ do
 					field="'$field' : fields.date('$display',required=$req)," 
 					;;
 				f)
-					functions="$functions\n\tdef _get_$field(self,cr, uid, ids, context=None):\n\t\tres={}\n\t\treturn res\n" 
+					functions="$functions\n\tdef _get_$field(self,cr, uid, ids, name, arg, context=None):\n\t\tres={}\n\t\tt=self.browse(cr,uid,ids,context=None\n\t\tfor h in t:\n\t\t\tres[h.id]=0\n\t\treturn res\n" 
 					field="'$field' : fields.function(_get_$field,type='integer',string='$display', store=False),"
 
-					;;
+
 			esac	
 			if [[ $fields == "" ]]; then 
 				fields="\t\t$field"
