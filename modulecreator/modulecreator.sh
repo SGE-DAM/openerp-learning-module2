@@ -5,6 +5,7 @@ read -p "Name of the module: " name
 model=""
 models=""
 
+echo -e "\nCreate the models:\n"
 while [[ $model != "0" ]]; do
 	read -p "Model name (0 for finish): " model
 	if [[ $models == "" ]]; then 
@@ -15,12 +16,12 @@ while [[ $model != "0" ]]; do
 
 done
 
-echo -e "Create module with this models: [34m$models[0m"
+echo -e "\nCreating module with this models: [34m$models[0m"
 
 echo "Let's make the models"
 
 python="from osv import osv, fields\n\n"
-xml="<?xml version="1.0"?>\n<openerp>\n<data>\n\n"
+xml="<?xml version=\"1.0\"?>\n<openerp>\n<data>\n\n"
 xml="$xml<menuitem name=\"$name\" id=\"menu_$name\"/>\n<menuitem name=\"Management\" id=\"menu_${name}_management\"  parent=\"menu_$name\"/>\n\n"
 
 for model in $models
@@ -39,7 +40,7 @@ do
 		read -p "  Field name (0 for finish): " field
 		if [[ $field != "0" ]]; then
 			fieldsxml="$fieldsxml\t\t\t<field name=\"$field\"/>\n" 
-			read -p "  Type [i]nteger [v]archar [b]oolean [F]loat [m]any2one [o]ne2many [mm]any2many [f]unction [b]inary: " t
+			read -p " Type [i]nteger [c]har [b]oolean [F]loat [m]any2one [o]ne2many [mm]any2many [f]unction [b]inary [d]ate: " t
 			read -p "  Display name: " display
 			read -p "  Required True or [False]: " req;  req=${req:-False}
 			case "$t" in
@@ -47,8 +48,8 @@ do
 					field="'$field' : fields.integer('$display',required=$req),"
 
 					;;
-				v)
-					field="'$field' : fields.varchar('$display',required=$req)," 
+				c)
+					field="'$field' : fields.char('$display',required=$req)," 
 					;;
 				b)
 					field="'$field' : fields.boolean('$display',required=$req)," 
@@ -57,7 +58,7 @@ do
 					field="'$field' : fields.float('$display',required=$req)," 
 					;;
 				m)
-					read -p "    Many2one with witch model? $models: " other
+					read -p "    Many2one with witch model?[34m $models[0m: " other
 					field="'$field' : fields.many2one('$name.$other','$display',required=$req)," 
 					;;
 				o)
@@ -75,6 +76,9 @@ do
 					;;
 				b)
 					field="'$field' : fields.binary('$display',required=$req)," 
+					;;
+				d)
+					field="'$field' : fields.date('$display',required=$req)," 
 					;;
 				f)
 					functions="$functions\n\tdef _get_$field(self,cr, uid, ids, context=None):\n\t\tres={}\n\t\treturn res\n" 

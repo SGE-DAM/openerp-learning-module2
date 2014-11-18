@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+<menuitem name="asteroids" id="menu_asteroids"/>
+<menuitem name="Management" id="menu_asteroids_management"  parent="menu_asteroids"/>
+
+	<record model="asteroids.sonda" id="view_asteroids_sonda_form">
+		<field name="name">asteroids.sonda.form</field>
+		<field name="model">asteroids.sonda</field><field name="arch" type="xml">
+		<form string="asteroids.sonda" version="7.0">
+			<sheet>
+				<group>
+			<field name="name"/>
+			<field name="x"/>
+			<field name="y"/>
+			<field name="z"/>
+			<field name="xi"/>
+			<field name="yi"/>
+			<field name="zi"/>
+
+		</group></sheet></form></field></record>
+
+	<record model="asteroids.sonda" id="view_asteroids_sonda_tree">
+		<field name="name">asteroids.sonda.tree</field>
+		<field name="model">asteroids.sonda</field><field name="arch" type="xml">
+		<tree string="asteroids.sonda">
+			<field name="name"/>
+			<field name="x"/>
+			<field name="y"/>
+			<field name="z"/>
+			<field name="xi"/>
+			<field name="yi"/>
+			<field name="zi"/>
+
+		</tree></field></record>
+
+ <record model="ir.actions.act_window" id="action_asteroids_sonda">
+	<field name="name">sonda</field>
+	<field name="res_model">asteroids.sonda</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+<menuitem name="sonda" id="menu_asteroids_sonda" action="action_asteroids_sonda" parent="menu_asteroids_management"/>
+
+	<record model="asteroids.despl" id="view_asteroids_despl_form">
+		<field name="name">asteroids.despl.form</field>
+		<field name="model">asteroids.despl</field><field name="arch" type="xml">
+		<form string="asteroids.despl" version="7.0">
+			<sheet>
+				<group>
+			<field name="date"/>
+			<field name="asteroid_id"/>
+			<field name="x"/>
+			<field name="y"/>
+			<field name="z"/>
+
+		</group></sheet></form></field></record>
+
+	<record model="asteroids.despl" id="view_asteroids_despl_tree">
+		<field name="name">asteroids.despl.tree</field>
+		<field name="model">asteroids.despl</field><field name="arch" type="xml">
+		<tree string="asteroids.despl">
+			<field name="date"/>
+			<field name="asteroid_id"/>
+			<field name="x"/>
+			<field name="y"/>
+			<field name="z"/>
+
+		</tree></field></record>
+
+ <record model="ir.actions.act_window" id="action_asteroids_despl">
+	<field name="name">despl</field>
+	<field name="res_model">asteroids.despl</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+<menuitem name="despl" id="menu_asteroids_despl" action="action_asteroids_despl" parent="menu_asteroids_management"/>
+
+</data></openerp>
