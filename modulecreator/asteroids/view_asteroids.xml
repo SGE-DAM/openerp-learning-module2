@@ -5,7 +5,7 @@
 <menuitem name="asteroids" id="menu_asteroids"/>
 <menuitem name="Management" id="menu_asteroids_management"  parent="menu_asteroids"/>
 
-	<record model="asteroids.sonda" id="view_asteroids_sonda_form">
+	<record model="ir.ui.view" id="view_sonda_form">
 		<field name="name">asteroids.sonda.form</field>
 		<field name="model">asteroids.sonda</field><field name="arch" type="xml">
 		<form string="asteroids.sonda" version="7.0">
@@ -21,7 +21,7 @@
 
 		</group></sheet></form></field></record>
 
-	<record model="asteroids.sonda" id="view_asteroids_sonda_tree">
+	<record model="ir.ui.view" id="view_sonda_tree">
 		<field name="name">asteroids.sonda.tree</field>
 		<field name="model">asteroids.sonda</field><field name="arch" type="xml">
 		<tree string="asteroids.sonda">
@@ -44,7 +44,7 @@
 
 <menuitem name="sonda" id="menu_asteroids_sonda" action="action_asteroids_sonda" parent="menu_asteroids_management"/>
 
-	<record model="asteroids.despl" id="view_asteroids_despl_form">
+	<record model="ir.ui.view" id="view_despl_form">
 		<field name="name">asteroids.despl.form</field>
 		<field name="model">asteroids.despl</field><field name="arch" type="xml">
 		<form string="asteroids.despl" version="7.0">
@@ -58,7 +58,7 @@
 
 		</group></sheet></form></field></record>
 
-	<record model="asteroids.despl" id="view_asteroids_despl_tree">
+	<record model="ir.ui.view" id="view_despl_tree">
 		<field name="name">asteroids.despl.tree</field>
 		<field name="model">asteroids.despl</field><field name="arch" type="xml">
 		<tree string="asteroids.despl">

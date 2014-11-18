@@ -30,8 +30,8 @@ do
 	fields=""
 	field=""
 	
-	recordform="\t<record model=\"$name.$model\" id=\"view_${name}_${model}_form\">\n\t\t<field name=\"name\">$name.$model.form</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<form string=\"$name.$model\" version=\"7.0\">\n\t\t\t<sheet>\n\t\t\t\t<group>\n"
-	recordtree="\t<record model=\"$name.$model\" id=\"view_${name}_${model}_tree\">\n\t\t<field name=\"name\">$name.$model.tree</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<tree string=\"$name.$model\">\n"
+	recordform="\t<record model=\"ir.ui.view\" id=\"view_${name}_${model}_form\">\n\t\t<field name=\"name\">$name.$model.form</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<form string=\"$name.$model\" version=\"7.0\">\n\t\t\t<sheet>\n\t\t\t\t<group>\n"
+	recordtree="\t<record model=\"ir.ui.view\" id=\"view_${name}_${model}_tree\">\n\t\t<field name=\"name\">$name.$model.tree</field>\n\t\t<field name=\"model\">$name.$model</field><field name=\"arch\" type=\"xml\">\n\t\t<tree string=\"$name.$model\">\n"
 	fieldsxml=""
 
 	functions=""
