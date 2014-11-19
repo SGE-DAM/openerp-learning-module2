@@ -167,11 +167,14 @@ class championship_championship(osv.osv):
 	def print_championship(self,cr,uid,ids,context=None):
 		print "Championship"
 		c=self.browse(cr,uid,ids[0],context=None).id
-		equips= self.pool.get('res.partner').search(cr,uid,[('isteam','=','True')])
-		teams= self.pool.get('res.partner').browse(cr,uid,equips,context=context)
+		equips=self.pool.get('sale.order').search(cr,uid,[('championship_id','=',c)])
+		teams=self.pool.get('sale.order').browse(cr,uid,equips,context=None)
 		for t in teams:
-			print t.name
-			#partits=self.pool.get('').search(cr,uid,[('isteam','=','True')])
+			print t.partner_id.name
+			partits=self.pool.get('sale.order.line').search(cr,uid,[('order_id','=',t.id)])
+			partits=self.pool.get('sale.order.line').browse(cr,uid,partits,context=None)
+			for p in partits:	
+				print "  "+p.name+" "+str(p.date)
 		return True
 
 	_name = 'championship.championship'

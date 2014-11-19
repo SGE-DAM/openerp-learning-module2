@@ -128,18 +128,26 @@
         <field name="name">championship.match.form</field>
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
-            <form string="championship.match">
+            <form string="championship.match" version="7.0">
+		<sheet ><notebook><page String="General"><group String="General">
 			<field name="date" />
 			<field name="championship_id" />
 			<field name="round" />
 			<field name="local" />
 			<field name="visitor" />
+			</group></page>
+		<page String="Results"><group string="Results">
 			<field name="score_local" />
 			<field name="score_visitor" />
-			<field name="players_local" />
-			<field name="players_visitor" />
 			<field name="points_local" />
 			<field name="points_visitor" />
+			</group>
+			<group String="Align">
+			<field name="players_local" />
+			<field name="players_visitor" />
+			</group>
+		</page>
+		</notebook></sheet>
 
 
             </form>
@@ -170,6 +178,19 @@
     </record>   
 
 
+  <record model="ir.actions.act_window.view" id="act_match_tree_view">
+    <field eval="1" name="sequence"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="view_championship_match_tree"/>
+    <field name="act_window_id" ref="action_championship_match"/>
+</record>
+
+<record model="ir.actions.act_window.view" id="act_match_form_view">
+    <field eval="2" name="sequence"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_championship_match_form"/>
+    <field name="act_window_id" ref="action_championship_match"/>
+</record> 
 
 
          <record model="ir.ui.view" id="view_championship_championships_form">
@@ -203,7 +224,22 @@
 
 				</field>
 
-				<field name="matches" />
+				<field name="matches" type="tree,calendar" >
+					<tree string="sale.order.line">
+						<field name="name"/>
+						<field name="date"/>
+						<field name="round" />
+						<field name="score_local" />
+						<field name="score_visitor" />
+						<field name="state" invisible="1"/>
+						</tree>
+					 <calendar color="name" date_start="start_date" date_stop="end_date">
+263  <field name="id"/>
+264  <field name="name"/>
+265  <field name="matches"/>
+266  </calendar>
+
+					</field>
 			</group>
 		</sheet>
             </form>
@@ -222,6 +258,21 @@
             </tree>
         </field>
     </record>
+
+ <record model="ir.ui.view" id="view_championship_championship_calendar">
+ <field name="name">championship.championship.calendar</field>
+ <field name="model">championship.championship</field>
+ <field name="type">calendar</field>
+ <field name="arch" type="xml">
+ <calendar color="name" date_start="start_date" date_stop="end_date">
+ <field name="id"/>
+ <field name="name"/>
+ <field name="matches"/>
+ </calendar>
+ </field>
+ </record>
+
+
     <record model="ir.actions.act_window" id="action_championship_championships">
         <field name="name">championship</field>
         <field name="res_model">championship.championship</field>
