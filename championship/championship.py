@@ -109,7 +109,7 @@ class championship_championship(osv.osv):
 		for e in equips:
 			equips_aux.append(e.partner_id.id)
 			i=i+1
-	#	random.shuffle(equips_aux)
+		random.shuffle(equips_aux)
 		print '*******************************'
 		print equips_aux
 		for i in range(1, len(equips_aux)): #falta el numero de rondas calcularlo
@@ -129,6 +129,8 @@ class championship_championship(osv.osv):
 							'local':equips_aux[j],
 							'visitor':equips_aux[19-j],
 							'round':i,
+							'points_local': random.randint(0,3),
+							'points_visitor': random.randint(0,3),
 							'price_unit': 1000,
 							'date':date_p}, context=None)
 				s_o_l.create(cr, uid, {
@@ -137,6 +139,8 @@ class championship_championship(osv.osv):
 							'championship_id':c,
 							'local':equips_aux[19-j],
 							'visitor':equips_aux[j],
+							'points_local': random.randint(0,3),
+							'points_visitor': random.randint(0,3),
 							'price_unit': 1000,
 							'round':i+19,
 							'date':date_p2}, context=None)
