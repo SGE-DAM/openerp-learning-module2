@@ -25,25 +25,16 @@ class championship_player(osv.osv):
 		'country': fields.many2one('res.country','Country'),
 		'position': fields.selection((('p','Goalkeeper'), ('d','Defender'),('c','MidField'),('f','Front')),'Position'),
 		'team_id' : fields.many2one('res.partner','Team',domain="[('isteam','=', True)]"),
-		'matches' : fields.many2many('championship.alignment','player_alignment','player_id','align_id','Matches'),
 	}
 championship_player()
 
 
-class championship_alignment(osv.osv):
-	_name = 'championship.alignment'
-	_columns = {
-		'players' : fields.many2many('res.partner','player_alignment','align_id','player_id','Players'),
-		'team' : fields.many2one('res.partner','Team'),
-		'match_id' : fields.many2one('sale.order.line','Match'),
-	}
-championship_team()
-
 class championship_teampoints(osv.osv):
 
-	def _get_points(self, cr, uid, ids, name, arg, context=None):
-		res={}        
+	def get_points(self, cr, uid, ids, name, arg, context=None):
+		res={}      
 		tots=self.browse(cr,uid,ids,context=None)
+			
 		for h in tots:
 			punts = 0
 			golsf = 0
@@ -51,8 +42,13 @@ class championship_teampoints(osv.osv):
 			team = h.partner_id.id
 			champ = h.championship_id.id
 
-			p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team)])
-			p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team)])
+			if arg:
+				print arg
+				p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team),('date','<=',arg.date)])
+				p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team),('date','<=',arg.date)])
+			else:
+				p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team)])
+				p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team)])
 			partits_local = self.pool.get('sale.order.line').browse(cr,uid,p_local,context=None)
 			partits_visitor = self.pool.get('sale.order.line').browse(cr,uid,p_visitor,context=None)
 			for p in partits_local:
@@ -80,7 +76,7 @@ class championship_teampoints(osv.osv):
 		'isteam' : fields.boolean('Team enrole'),
 		'championship_id' : fields.many2one('championship.championship','Championship'),
 	#	'team_id' : fields.many2one('res.partner','Team'),
-		'points' : fields.function(_get_points,type='integer',string='Points', store=False),
+		'points' : fields.function(get_points,type='integer', string='Points', store=False),
 		'point_v' : fields.integer('Points',readonly=True),
 		'score' : fields.integer('Score', readonly=True),
 		'conceded' : fields.integer('Conceded', readonly=True),
@@ -214,8 +210,8 @@ class championship_match(osv.osv):
 		'score_visitor': fields.integer('Score Visitor'),
 		'points_local': fields.integer('Points Local'),
 		'points_visitor': fields.integer('Points Visitor'),
-		'players_local' : fields.one2many('championship.alignment','match_id','Players Local'),
-		'players_visitor' : fields.one2many('championship.alignment','match_id','Players Visitor'),
+		'players_local' : fields.many2many('res.partner','alignment_local','match_id','player_id','Players Local'),
+		'players_visitor' : fields.many2many('res.partner','alignment_visitor','match_id','player_id','Players Visitor'),
 
 
 	}

@@ -66,7 +66,7 @@
 				<field name="country" />
 				<field name="born_date" />
 				<field name="team_id"/>
-				<field name="matches"/>
+				<!-- <field name="matches"/> -->
 			</group>
 		</sheet>
 
@@ -110,19 +110,6 @@
 </record> 
 
 
-   <record model="ir.ui.view" id="view_championship_alignment_form">
-        <field name="name">championship.alignment.form</field>
-        <field name="model">championship.alignment</field>
-        <field name="arch" type="xml">
-            <form string="championship.alignment">
-			<field name="players" />
-			<field name="team" />
-			<field name="match_id" />
-
-
-            </form>
-        </field>
-    </record>
 
    <record model="ir.ui.view" id="view_championship_match_form">
         <field name="name">championship.match.form</field>
