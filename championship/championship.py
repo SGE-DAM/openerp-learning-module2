@@ -17,6 +17,21 @@ class championship_team(osv.osv):
 championship_team()
 
 class championship_player(osv.osv):
+	def get_matches(self, cr, uid, ids, name, arg, context=None):
+		res={}      
+		tots=self.browse(cr,uid,ids,context=None)
+		for h in tots:
+			matches=[]
+			m=self.pool.get('sale.order.line').search(cr,uid,[])
+			m=self.pool.get('sale.order.line').browse(cr,uid,m,context=None)
+			for match in m:
+				if h in match.players_local:
+					matches.append(match.id)	
+				if h in match.players_visitor:
+					matches.append(match.id)	
+			res[h.id]=matches
+		return res
+
 	_inherit = 'res.partner'
 	#_name = 'championship.player'
 	_columns = {
@@ -25,6 +40,7 @@ class championship_player(osv.osv):
 		'country': fields.many2one('res.country','Country'),
 		'position': fields.selection((('p','Goalkeeper'), ('d','Defender'),('c','MidField'),('f','Front')),'Position'),
 		'team_id' : fields.many2one('res.partner','Team',domain="[('isteam','=', True)]"),
+		'matches' : fields.function(get_matches,type='many2many',relation='sale.order.line',string="Matches",store=False),
 	}
 championship_player()
 
@@ -197,6 +213,18 @@ class championship_match(osv.osv):
 			if (h.date < h.championship_id.start_date) or (h.date > h.championship_id.end_date):
 				return False
 		return True
+	def check_dates2 (self,cr,uid,ids,context=None):
+		m = self.browse(cr, uid, ids, context=context)
+		for h in m:
+			same_date=self.search(cr,uid,['&',('date','=',h.date),('id','!=',h.id)])
+			same_date=self.browse(cr,uid,same_date, context=context)
+			#print same_date
+			#print h
+			for s in same_date:
+				if (s.local == h.local) or (s.local == h.visitor) or (s.visitor == h.local) or (s.visitor == h.visitor):
+					return False
+						
+		return True
   	
 	_inherit = 'sale.order.line'
 	#_name = 'championship.match'
@@ -217,6 +245,7 @@ class championship_match(osv.osv):
 	}
 	_constraints = [
 		(check_dates,"The date of the match isn't between the dates of the championship", ["date"]),
+		(check_dates2,"One team of this match has other match the same day", ["date"]),
 	]
 
 	_order = 'round'
