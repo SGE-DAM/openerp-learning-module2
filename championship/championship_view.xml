@@ -8,12 +8,22 @@
         <field name="arch" type="xml">
             <form string="championship.team" version="7.0">
 		<sheet>
+
 			<group>
 				<field name="image" widget="image" class="oe_left oe_avatar"/>
 				<field name="name" />
 				<field name="isteam"/>
-				<field name="players"/>
 			</group>
+		<notebook>
+			<page string="Players">
+			<group>
+				<field name="players" mode="kanban,tree"/>
+			</group>
+			</page>
+			<page String="Results">
+
+			</page>
+                </notebook>
 		</sheet>
 
             </form>
@@ -33,7 +43,7 @@
         <field name="name">Teams</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
 	<field name="domain">[('isteam','=',True)]</field>
     </record>
 
@@ -300,7 +310,18 @@
 				<field name="point_v"/>
 				<field name="score"  />
 				<field name="conceded" />
-		</group></page>
+		</group>
+		<group String="Graphs">
+				<field name="id"/>
+				<field name="rounds" mode="tree,graph"  
+				domain="[('team','=', id)]" >
+     				 <graph string="Points" type="line">
+        				<field name="round"/>
+        				<field name="point_v" />
+     				 </graph>
+				</field>
+		</group>
+		</page>
 	</notebook> 
 
          
@@ -328,8 +349,37 @@
         <field name="view_mode">tree,form</field>
 	<field name="domain">[('isteam','=',True)]</field>
     </record>  
-   
 
+    <record model="ir.ui.view" id="view_championship_round_tree">
+        <field name="name">championship.round.tree</field>
+        <field name="model">championship.round</field>
+        <field name="arch" type="xml">
+            <tree string="championship.round">
+ 				<field name="points"/> 
+				<field name="team" />
+				<field name="round" />
+
+            </tree>
+        </field>
+    </record>
+ <record model="ir.ui.view" id="view_championship_round_graph">
+   <field name="name">championship.round.graph</field>
+   <field name="model">championship.round</field>
+   <field name="arch" type="xml">
+      <graph string="Points" type="bar">
+        <field name="round"/>
+        <field name="point_v" />
+      </graph>
+   </field>
+ </record>   
+
+
+    <record model="ir.actions.act_window" id="action_championship_rounds">
+        <field name="name">Rounds</field>
+        <field name="res_model">championship.round</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+    </record>  
   <menuitem name="Championship" id="menu_championship"/>
   <menuitem name="Management" id="menu_championship_management"  parent="menu_championship"/>
   <menuitem name="Teams" id="menu_championship_teams" action="action_championship_team" parent="menu_championship_management"/>
@@ -337,6 +387,7 @@
   <menuitem name="Matches" id="menu_championship_matches" action="action_championship_match" parent="menu_championship_management"/>
   <menuitem name="Championships" id="menu_championship_championships" action="action_championship_championships" parent="menu_championship_management"/>
   <menuitem name="teampoints" id="menu_championship_teampoints" action="action_championship_teampoints" parent="menu_championship_management"/>
+  <menuitem name="rounds" id="menu_championship_rounds" action="action_championship_rounds" parent="menu_championship_management"/>
   
         
 </data>

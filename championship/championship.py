@@ -59,9 +59,11 @@ class championship_teampoints(osv.osv):
 			champ = h.championship_id.id
 
 			if arg:
-				print arg
-				p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team),('date','<=',arg.date)])
-				p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team),('date','<=',arg.date)])
+		#		print str(arg)+str(arg.round)
+		#		print tots
+				p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team),('round','<=',arg.round)])
+				p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team),('round','<=',arg.round)])
+		#		print str(p_local)+str(p_visitor)
 			else:
 				p_local = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('local','=',team)])
 				p_visitor = self.pool.get('sale.order.line').search(cr,uid,['&',('championship_id','=',champ),('visitor','=',team)])
@@ -76,11 +78,12 @@ class championship_teampoints(osv.osv):
 				golsc = golsc + p.score_local
 				golsf = golsf + p.score_visitor
 			res[h.id] = punts
-
+			#print punts
 			# Necessite actualitzar tambe el camp point_v per poder ordenar self.write(cr, uid, [166, 299], {'fac_id': 21})
 		#	print h.id
 		#	print punts
-			self.write(cr, uid, [h.id], {'point_v': punts,'score' : golsf,'conceded': golsc})
+			if not arg: 
+				self.write(cr, uid, [h.id], {'point_v': punts,'score' : golsf,'conceded': golsc})
 
 			
 		return res
@@ -96,7 +99,7 @@ class championship_teampoints(osv.osv):
 		'point_v' : fields.integer('Points',readonly=True),
 		'score' : fields.integer('Score', readonly=True),
 		'conceded' : fields.integer('Conceded', readonly=True),
-        
+		'rounds': fields.one2many('championship.round','team','Rounds'),                 
 	}
 	_order = 'point_v desc'
 	
@@ -112,6 +115,7 @@ class championship_championship(osv.osv):
 		#equips= self.pool.get('championship.team').search(cr,uid,[])
 		data_partit=self.browse(cr,uid,ids[0],context=None).start_date
 		s_o_l=self.pool.get('sale.order.line')
+		rondas=self.pool.get('championship.round')
 		s_o=self.pool.get('sale.order')
 		s_o_l.unlink(cr, uid, s_o_l.search(cr,uid,[('championship_id','=',c)]), context=None)
 		equips=s_o.browse(cr, uid, s_o.search(cr,uid,[('championship_id','=',c)]), context=None)
@@ -156,6 +160,10 @@ class championship_championship(osv.osv):
 							'price_unit': 1000,
 							'round':i+19,
 							'date':date_p2}, context=None)
+				rondas.create(cr, uid, {'round': i,'team':order1.id},context=None)
+				rondas.create(cr, uid, {'round': i+19,'team':order2.id},context=None)
+				rondas.create(cr, uid, {'round': i,'team':order2.id},context=None)
+				rondas.create(cr, uid, {'round': i+19,'team':order1.id},context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])
@@ -250,3 +258,22 @@ class championship_match(osv.osv):
 
 	_order = 'round'
 championship_match()
+
+class championship_round(osv.osv):
+	
+	def _get_points(self, cr, uid, ids, name, arg, context=None):
+		res={}
+		for h in self.browse(cr,uid,ids,context=None):
+			a=h.team.get_points(h.team,h)
+			#print a[h.team.id]
+			res[h.id]=a[h.team.id]
+			self.write(cr,uid,[h.id],{'point_v':res[h.id]})
+		return res			
+
+	_name = 'championship.round'
+	_columns = {
+		'round' :fields.integer('Round'),
+		'team' : fields.many2one('sale.order','Team'),
+		'points' : fields.function(_get_points,type='integer', string='Points', store=False),
+		'point_v' : fields.integer('Points'),
+	}
