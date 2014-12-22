@@ -106,21 +106,19 @@
         </field>
     </record> 
 
- <!-- <record model="ir.ui.view" id="view_championship_player_search">
+  <record model="ir.ui.view" id="view_championship_player_search">
    <field name="name">championship.player.search</field>
    <field name="model">res.partner</field>
-	<field name="inherit_id" ref="base.view_res_partner_filter"/>
+   
    <field name="arch" type="xml">
-		<search string="Search Player" position="inside">
-		
-			<field string="Team" context="{'group_by' : 'team_id'}"/>
-			<field string="Spanish" domain="[('country','=','Spain')]"/>
-
-               </search>
+		<search string="Search Partner">			
+		<!--	<field string="Team" context="{'group_by' : 'team_id'}"/> -->
+			<field name="country" string="Spanish" domain="[('country','=','spain')]"/> 
+       </search>
 
    </field>
  </record>   
- -->
+
    <record model="ir.actions.act_window" id="action_championship_player">
         <field name="name">Players</field>
         <field name="res_model">res.partner</field>
@@ -390,6 +388,19 @@
  </record>   
 
 
+  <record model="ir.ui.view" id="view_championship_round_search">
+   <field name="name">championship.round.search</field>
+   <field name="model">championship.round</field>
+   
+   <field name="arch" type="xml">
+		<search string="Search Round">			
+			<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'team'}" help="Team"/>
+ 
+			<field name="team" string="Valencia" domain="[('partner_id','=',2)]"/> 
+       </search>
+
+   </field>
+ </record>   
 
     <record model="ir.actions.act_window" id="action_championship_rounds">
         <field name="name">Rounds</field>
