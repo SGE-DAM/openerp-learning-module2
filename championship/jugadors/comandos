@@ -1,0 +1,7 @@
+http://www.resultados-futbol.com/Atletico-Madrid
+
+
+cat val.html | grep -n -1 sdata_player_img | grep src | sed -re 's/.*src="(.*)\?size=.*/\1/g' -e 's/small/big/g' | xargs wget
+cat val.html | grep -n -1 sdata_player_name | grep jugador | sed -re 's_.*jugador/(.*)" itemprop.*"name">(.*)</span>.*_\1 \2_g'
+for i in $(cat val.html | grep -n -1 sdata_player_name | grep jugador | sed -re 's_.*jugador/(.*)" itemprop.*"name">(.*)</span>.*_\1_g'); do j=$(grep -1 sdata_player_name val.html | grep $i | sed -r 's_.*"name">(.*)</span>.*_\1_g'); echo -e "<record model=\"res.partner\" id=\"$i\">\n <field name=\"name\">$j</field> \n <field name=\"isplayer\">True</field> \n <field name=\"image\">$(base64 $(echo $i | sed 's/[^0-9]//g').jpg)</field>\n</record>"; done > atl.xml
+

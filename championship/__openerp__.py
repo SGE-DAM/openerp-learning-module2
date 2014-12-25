@@ -8,7 +8,7 @@
         "depends" : ['base','report_webkit','sale'],
         "init_xml" : [ ],
         "demo_xml" : [ ],
-        "update_xml" : ['championship_view.xml','equips.xml',
+        "update_xml" : ['championship_view.xml','equips.xml','jugadors/val.xml', 'jugadors/atl.xml',
 			'report/header_championship.xml',
 			'champion_report.xml'],
         "installable": True

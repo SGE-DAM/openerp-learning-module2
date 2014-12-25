@@ -99,7 +99,7 @@ class championship_teampoints(osv.osv):
 		'point_v' : fields.integer('Points',readonly=True),
 		'score' : fields.integer('Score', readonly=True),
 		'conceded' : fields.integer('Conceded', readonly=True),
-		'rounds': fields.one2many('championship.round','team','Rounds'),                 
+		'rounds': fields.one2many('championship.round','teampoint','Rounds'),                 
 	}
 	_order = 'point_v desc'
 	
@@ -118,6 +118,7 @@ class championship_championship(osv.osv):
 		rondas=self.pool.get('championship.round')
 		s_o=self.pool.get('sale.order')
 		s_o_l.unlink(cr, uid, s_o_l.search(cr,uid,[('championship_id','=',c)]), context=None)
+		rondas.unlink(cr,uid,rondas.search(cr,uid,[('teampoint.championship_id','=',c)]),context=None)
 		equips=s_o.browse(cr, uid, s_o.search(cr,uid,[('championship_id','=',c)]), context=None)
 		print equips
 		equips_aux=[]
@@ -160,10 +161,10 @@ class championship_championship(osv.osv):
 							'price_unit': 1000,
 							'round':i+19,
 							'date':date_p2}, context=None)
-				rondas.create(cr, uid, {'round': i,'team':order1.id},context=None)
-				rondas.create(cr, uid, {'round': i+19,'team':order2.id},context=None)
-				rondas.create(cr, uid, {'round': i,'team':order2.id},context=None)
-				rondas.create(cr, uid, {'round': i+19,'team':order1.id},context=None)
+				rondas.create(cr, uid, {'round': i,'teampoint':order1.id},context=None)
+				rondas.create(cr, uid, {'round': i+19,'teampoint':order2.id},context=None)
+				rondas.create(cr, uid, {'round': i,'teampoint':order2.id},context=None)
+				rondas.create(cr, uid, {'round': i+19,'teampoint':order1.id},context=None)
 			aux=[]
 			aux.append(equips_aux[0])
 			aux.append(equips_aux[19])
@@ -264,16 +265,18 @@ class championship_round(osv.osv):
 	def _get_points(self, cr, uid, ids, name, arg, context=None):
 		res={}
 		for h in self.browse(cr,uid,ids,context=None):
-			a=h.team.get_points(h.team,h)
-			#print a[h.team.id]
-			res[h.id]=a[h.team.id]
+			a=h.teampoint.get_points(h.teampoint,h)
+			#print "puntos"
+			res[h.id]=a[h.teampoint.id]
 			self.write(cr,uid,[h.id],{'point_v':res[h.id]})
 		return res			
 
 	_name = 'championship.round'
 	_columns = {
 		'round' :fields.integer('Round'),
-		'team' : fields.many2one('sale.order','Team'),
+		'teampoint' : fields.many2one('sale.order','Teampoints'),
+		'team' : fields.related('teampoint','partner_id',type='many2one',relation='res.partner',string='Team',store=False),
+		'championship' : fields.related('teampoint','championship_id',type='many2one',relation='championship.championship',string='Championship',store=False),
 		'points' : fields.function(_get_points,type='integer', string='Points', store=False),
 		'point_v' : fields.integer('Points'),
 	}

@@ -113,7 +113,13 @@
    <field name="arch" type="xml">
 		<search string="Search Partner">			
 		<!--	<field string="Team" context="{'group_by' : 'team_id'}"/> -->
-			<field name="country" string="Spanish" domain="[('country','=','spain')]"/> 
+	<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'team_id'}" help="Team"/>
+	<filter string="Valencia" icon="terp-gtk-jump-to-rtl" domain="[('team_id','=','VALENCIA')]" context="" help="Team"/>
+		<field name="team_id" string="team" domain="[]"/>
+			<field name="country" string="Country" domain="[]"/> 
+	<filter string="Spanish" icon="terp-gtk-jump-to-rtl" domain="[('country','=',69)]" context="" help="Spanish"/>
+	<filter string="European" icon="terp-gtk-jump-to-rtl" domain="[('country','in',(1,13,21,58,60,89,102,138,153,185,76,69,110))]" context="" help="Team"/>
+	<filter string="No comunitary" icon="terp-gtk-jump-to-rtl" domain="['!',('country','in',(1,13,21,58,60,89,102,138,153,185,76,69,110))]" context="" help="Team"/>
        </search>
 
    </field>
@@ -124,6 +130,7 @@
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+	<field name="search_view_id" ref="view_championship_player_search"/>
 	<field name="domain">[('isplayer','=',True)]</field>
     </record>
 
@@ -328,7 +335,7 @@
 		<group String="Graphs">
 				<field name="id"/>
 				<field name="rounds" mode="tree,graph"  
-				domain="[('team','=', id)]" >
+				domain="[('teampoint','=', id)]" >
      				 <graph string="Points" type="line">
         				<field name="round"/>
         				<field name="point_v" />
@@ -370,7 +377,9 @@
         <field name="arch" type="xml">
             <tree string="championship.round">
  				<field name="points"/> 
+				<field name="point_v" invisible="1"/>
 				<field name="team" />
+				<field name="championship"/>
 				<field name="round" />
 
             </tree>
@@ -393,10 +402,11 @@
    <field name="model">championship.round</field>
    
    <field name="arch" type="xml">
-		<search string="Search Round">			
-			<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'team'}" help="Team"/>
- 
-			<field name="team" string="Valencia" domain="[('partner_id','=',2)]"/> 
+	<search string="Search Round">			
+	<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'team'}" help="Team"/>
+	<filter string="Valencia" icon="terp-gtk-jump-to-rtl" domain="[('team','=','VALENCIA')]" context="" help="Team"/>
+		<field name="team" string="team" domain="[]"/>
+		<field name="championship" string="championship" domain="[]"/>
        </search>
 
    </field>
