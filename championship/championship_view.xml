@@ -2,6 +2,48 @@
 <openerp>
 <data>
 
+
+    <record model="ir.ui.view" id="view_championship_teamplayer_form">
+        <field name="name">championship.teamplayer.form</field>
+        <field name="model">res.partner</field>
+	<field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+
+		<notebook position="inside">
+			<page string="Team">
+			<group>
+				<field name="players" mode="kanban,tree"/>
+				<field name="name" />
+				<field name="isteam"/>
+			</group>
+			</page>
+			<page String="Player">
+			<group>
+				<field name="isplayer"/>
+				<field name="position" />
+				<field name="country" />
+				<field name="born_date" />
+				<field name="team_id"/>
+				<field name="matches" type="tree">
+
+					<tree string="Matches">
+						<field name="name"/>
+						<field name="date"/>
+						
+						<field name="state" invisible="1"/>
+					</tree>
+				</field> 
+			</group>
+			</page>
+                </notebook>
+		
+
+           
+        </field>
+    </record>
+
+
     <record model="ir.ui.view" id="view_championship_team_form">
         <field name="name">championship.team.form</field>
         <field name="model">res.partner</field>
@@ -251,7 +293,7 @@
 				<button name="print_championship" string="Print" type="object"/> 
 			</group>
 			<group string="Teams and Matches">
-				<field name="teams" type="tree">
+				<field name="teams" type="tree" context="{'default_championship_id': active_id}">
 					<tree string="sale.order">
  						<!-- <field name="points" /> <field name="championship_id" /> --> 
 						<field name="partner_id" />
