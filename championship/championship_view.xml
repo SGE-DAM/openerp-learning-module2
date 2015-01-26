@@ -85,7 +85,7 @@
         <field name="name">Teams</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">kanban,tree,form</field>
 	<field name="domain">[('isteam','=',True)]</field>
     </record>
 
@@ -211,8 +211,8 @@
 			<field name="points_visitor" />
 			</group>
 			<group String="Align">
-			<field name="players_local" />
-			<field name="players_visitor" />
+			<field name="players_local"  domain="[('team_id','=', local)]"/>
+			<field name="players_visitor" domain="[('team_id','=', visitor)]"/>
 			</group>
 		</page>
 		</notebook></sheet>
@@ -293,7 +293,7 @@
 				<button name="print_championship" string="Print" type="object"/> 
 			</group>
 			<group string="Teams and Matches">
-				<field name="teams" type="tree" context="{'default_championship_id': active_id}">
+	<field name="teams" type="tree" context="{'default_championship_id': active_id}">
 					<tree string="sale.order">
  						<!-- <field name="points" /> <field name="championship_id" /> --> 
 						<field name="partner_id" />
