@@ -211,6 +211,8 @@
 			<field name="points_visitor" />
 			</group>
 			<group String="Align">
+
+				<button name="create_align" string="Create Align" type="object"/> 
 			<field name="players_local"  domain="[('team_id','=', local)]"/>
 			<field name="players_visitor" domain="[('team_id','=', visitor)]"/>
 			</group>
@@ -445,7 +447,7 @@
    
    <field name="arch" type="xml">
 	<search string="Search Round">			
-	<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'team'}" help="Team"/>
+	<filter string="Team" icon="terp-gtk-jump-to-rtl" domain="" context="{'group_by':'team'}" help="Team"/>
 	<filter string="Valencia" icon="terp-gtk-jump-to-rtl" domain="[('team','=','VALENCIA')]" context="" help="Team"/>
 		<field name="team" string="team" domain="[]"/>
 		<field name="championship" string="championship" domain="[]"/>

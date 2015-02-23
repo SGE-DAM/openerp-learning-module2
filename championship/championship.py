@@ -234,7 +234,15 @@ class championship_match(osv.osv):
 					return False
 						
 		return True
-  	
+  
+
+	def create_align(self,cr, uid, ids, context=None):
+		a=self.browse(cr,uid,ids[0],context=None)
+		players_l=self.pool.get('res.partner').search(cr,uid,[('team_id','=',a.local.id)])
+		print players_l
+		self.write(cr,uid,a.id,{'players_local':[(6,0,players_l)]})
+		return True
+	
 	_inherit = 'sale.order.line'
 	#_name = 'championship.match'
 	_columns = {

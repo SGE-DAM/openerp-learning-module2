@@ -1,0 +1,389 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* championship
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140804-231303\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-28 07:09+0000\n"
+"PO-Revision-Date: 2015-01-28 07:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: championship
+#: view:championship.round:0
+msgid "Search Round"
+msgstr "Search Round"
+
+#. module: championship
+#: model:ir.actions.report.xml,name:championship.match_tiquet
+msgid "Match Tiquets"
+msgstr "Match Tiquets"
+
+#. module: championship
+#: model:ir.ui.menu,name:championship.menu_championship_management
+msgid "Management"
+msgstr "Management"
+
+#. module: championship
+#: field:sale.order.line,score_visitor:0
+msgid "Score Visitor"
+msgstr "Score Visitor"
+
+#. module: championship
+#: model:ir.actions.act_window,name:championship.action_championship_teampoints
+#: model:ir.ui.menu,name:championship.menu_championship_teampoints
+msgid "teampoints"
+msgstr "Equipos y puntos"
+
+#. module: championship
+#: view:championship.round:0
+#: field:championship.round,team:0
+#: view:res.partner:0
+#: field:res.partner,team_id:0
+msgid "Team"
+msgstr "Equipo"
+
+#. module: championship
+#: view:sale.order.line:0
+msgid "Results"
+msgstr "Resultados"
+
+#. module: championship
+#: view:res.partner:0
+msgid "Spanish"
+msgstr "Español"
+
+#. module: championship
+#: field:sale.order,score:0
+msgid "Score"
+msgstr "Puntos"
+
+#. module: championship
+#: field:sale.order.line,score_local:0
+msgid "Score Local"
+msgstr "Puntos Local"
+
+#. module: championship
+#: model:ir.actions.act_window,name:championship.action_championship_rounds
+#: field:sale.order,rounds:0
+msgid "Rounds"
+msgstr "Rondas"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: championship
+#: view:championship.round:0
+#: view:res.partner:0
+msgid "Valencia"
+msgstr "Valencia"
+
+#. module: championship
+#: help:championship.championship,name:0
+msgid "This is the name of the team"
+msgstr "Este es el nombre del equipo"
+
+#. module: championship
+#: model:ir.ui.menu,name:championship.menu_championship_rounds
+msgid "rounds"
+msgstr "Rondas"
+
+#. module: championship
+#: view:res.partner:0
+msgid "European"
+msgstr "Europeo"
+
+#. module: championship
+#: view:res.partner:0
+msgid "championship.player"
+msgstr "Jugador"
+
+#. module: championship
+#: field:championship.round,championship:0
+#: model:ir.ui.menu,name:championship.menu_championship
+#: field:sale.order,championship_id:0
+#: field:sale.order.line,championship_id:0
+msgid "Championship"
+msgstr "Campeonato"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "sale.order"
+msgstr "sale.order"
+
+#. module: championship
+#: view:sale.order:0
+msgid "Champion"
+msgstr "Champion"
+
+#. module: championship
+#: field:res.partner,isplayer:0
+msgid "Is player"
+msgstr "Is player"
+
+#. module: championship
+#: field:sale.order.line,visitor:0
+msgid "Visitor Team"
+msgstr "Visitor Team"
+
+#. module: championship
+#: field:championship.championship,matches:0
+#: model:ir.ui.menu,name:championship.menu_championship_matches
+#: view:res.partner:0
+#: field:res.partner,matches:0
+msgid "Matches"
+msgstr "Matches"
+
+#. module: championship
+#: field:sale.order.line,local:0
+msgid "Local Team"
+msgstr "Local Team"
+
+#. module: championship
+#: field:sale.order.line,points_local:0
+msgid "Points Local"
+msgstr "Points Local"
+
+#. module: championship
+#: field:championship.round,round:0
+#: field:sale.order.line,round:0
+msgid "Round"
+msgstr "Round"
+
+#. module: championship
+#: view:championship.championship:0
+#: model:ir.model,name:championship.model_championship_championship
+msgid "championship.championship"
+msgstr "championship.championship"
+
+#. module: championship
+#: model:ir.ui.menu,name:championship.menu_championship_championships
+msgid "Championships"
+msgstr "Championships"
+
+#. module: championship
+#: view:res.partner:0
+msgid "Search Partner"
+msgstr "Buscar empresa"
+
+#. module: championship
+#: field:sale.order,conceded:0
+msgid "Conceded"
+msgstr "Conceded"
+
+#. module: championship
+#: selection:res.partner,position:0
+msgid "Front"
+msgstr "Front"
+
+#. module: championship
+#: view:sale.order.line:0
+msgid "championship.match"
+msgstr "championship.match"
+
+#. module: championship
+#: view:championship.round:0
+#: model:ir.model,name:championship.model_championship_round
+msgid "championship.round"
+msgstr "championship.round"
+
+#. module: championship
+#: constraint:sale.order.line:0
+msgid "The date of the match isn't between the dates of the championship"
+msgstr "The date of the match isn't between the dates of the championship"
+
+#. module: championship
+#: model:ir.actions.act_window,name:championship.action_championship_match
+msgid "match"
+msgstr "match"
+
+#. module: championship
+#: field:championship.championship,end_date:0
+msgid "End Date"
+msgstr "End Date"
+
+#. module: championship
+#: field:sale.order.line,players_visitor:0
+msgid "Players Visitor"
+msgstr "Players Visitor"
+
+#. module: championship
+#: field:championship.championship,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: championship
+#: view:res.partner:0
+msgid "Country"
+msgstr "País"
+
+#. module: championship
+#: view:championship.round:0
+#: view:res.partner:0
+msgid "team"
+msgstr "team"
+
+#. module: championship
+#: view:res.partner:0
+msgid "No comunitary"
+msgstr "No comunitary"
+
+#. module: championship
+#: field:championship.round,teampoint:0
+msgid "Teampoints"
+msgstr "Teampoints"
+
+#. module: championship
+#: field:championship.championship,teams:0
+#: model:ir.actions.act_window,name:championship.action_championship_team
+#: model:ir.ui.menu,name:championship.menu_championship_teams
+msgid "Teams"
+msgstr "Teams"
+
+#. module: championship
+#: field:sale.order.line,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: championship
+#: field:res.partner,born_date:0
+msgid "Born Date"
+msgstr "Born Date"
+
+#. module: championship
+#: view:championship.round:0
+#: field:championship.round,point_v:0
+#: field:championship.round,points:0
+#: view:sale.order:0
+#: field:sale.order,point_v:0
+#: field:sale.order,points:0
+msgid "Points"
+msgstr "Points"
+
+#. module: championship
+#: view:res.partner:0
+msgid "championship.team"
+msgstr "championship.team"
+
+#. module: championship
+#: selection:res.partner,position:0
+msgid "Defender"
+msgstr "Defender"
+
+#. module: championship
+#: field:res.partner,position:0
+msgid "Position"
+msgstr "Position"
+
+#. module: championship
+#: view:sale.order:0
+msgid "championship.teampoints"
+msgstr "championship.teampoints"
+
+#. module: championship
+#: field:sale.order.line,points_visitor:0
+msgid "Points Visitor"
+msgstr "Points Visitor"
+
+#. module: championship
+#: view:championship.round:0
+#: model:ir.actions.act_window,name:championship.action_championship_championships
+msgid "championship"
+msgstr "championship"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "Teams and Matches"
+msgstr "Teams and Matches"
+
+#. module: championship
+#: model:ir.actions.act_window,name:championship.action_championship_player
+#: model:ir.ui.menu,name:championship.menu_championship_players
+#: view:res.partner:0
+#: field:res.partner,players:0
+msgid "Players"
+msgstr "Players"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "sale.order.line"
+msgstr "sale.order.line"
+
+#. module: championship
+#: constraint:sale.order.line:0
+msgid "One team of this match has other match the same day"
+msgstr "One team of this match has other match the same day"
+
+#. module: championship
+#: field:sale.order.line,players_local:0
+msgid "Players Local"
+msgstr "Players Local"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "General"
+msgstr "General"
+
+#. module: championship
+#: field:sale.order,isteam:0
+msgid "Team enrole"
+msgstr "Team enrole"
+
+#. module: championship
+#: selection:res.partner,position:0
+msgid "MidField"
+msgstr "MidField"
+
+#. module: championship
+#: model:ir.model,name:championship.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: championship
+#: model:ir.model,name:championship.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "Create Calendar"
+msgstr "Create Calendar"
+
+#. module: championship
+#: field:championship.championship,start_date:0
+msgid "Start Date"
+msgstr "Start Date"
+
+#. module: championship
+#: model:ir.model,name:championship.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: championship
+#: field:res.partner,isteam:0
+msgid "Is Team"
+msgstr "Is Team"
+
+#. module: championship
+#: selection:res.partner,position:0
+msgid "Goalkeeper"
+msgstr "Goalkeeper"
+
+#. module: championship
+#: model:ir.actions.report.xml,name:championship.match_poster
+msgid "Match Poster"
+msgstr "Match Poster"
+
+#. module: championship
+#: view:championship.championship:0
+msgid "Put all teams!"
+msgstr "Put all teams!"
+
