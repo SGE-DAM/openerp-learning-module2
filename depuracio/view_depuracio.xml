@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+<menuitem name="depuracio" id="menu_depuracio"/>
+<menuitem name="Management" id="menu_depuracio_management"  parent="menu_depuracio"/>
+
+	<record model="ir.ui.view" id="view_depuracio_deppartner_form">
+		<field name="name">depuracio.deppartner.form</field>
+		<field name="model">depuracio.deppartner</field><field name="arch" type="xml">
+		<form string="depuracio.deppartner" version="7.0">
+			<sheet>
+				<group>
+
+		</group></sheet></form></field></record>
+
+	<record model="ir.ui.view" id="view_depuracio_deppartner_tree">
+		<field name="name">depuracio.deppartner.tree</field>
+		<field name="model">depuracio.deppartner</field><field name="arch" type="xml">
+		<tree string="depuracio.deppartner">
+
+		</tree></field></record>
+
+ <record model="ir.actions.act_window" id="action_depuracio_deppartner">
+	<field name="name">deppartner</field>
+	<field name="res_model">depuracio.deppartner</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+<menuitem name="deppartner" id="menu_depuracio_deppartner" action="action_depuracio_deppartner" parent="menu_depuracio_management"/>
+
+	<record model="ir.ui.view" id="view_depuracio_depproduct_form">
+		<field name="name">depuracio.depproduct.form</field>
+		<field name="model">depuracio.depproduct</field><field name="arch" type="xml">
+		<form string="depuracio.depproduct" version="7.0">
+			<sheet>
+				<group>
+
+		</group></sheet></form></field></record>
+
+	<record model="ir.ui.view" id="view_depuracio_depproduct_tree">
+		<field name="name">depuracio.depproduct.tree</field>
+		<field name="model">depuracio.depproduct</field><field name="arch" type="xml">
+		<tree string="depuracio.depproduct">
+
+		</tree></field></record>
+
+ <record model="ir.actions.act_window" id="action_depuracio_depproduct">
+	<field name="name">depproduct</field>
+	<field name="res_model">depuracio.depproduct</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+<menuitem name="depproduct" id="menu_depuracio_depproduct" action="action_depuracio_depproduct" parent="menu_depuracio_management"/>
+
+</data></openerp>
