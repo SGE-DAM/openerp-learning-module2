@@ -8,11 +8,11 @@ class depuracio_metodes(osv.osv):
 		p_id = super(depuracio_metodes, self).create(cr, uid, values, context=context)
 		p = self.browse(cr, uid, p_id, context=context)
 		p_data = self.copy_data(cr, uid, p_id, default=None, context=None)
-		print "Datos: "
+		print "Creating: "+str(self._name)
 		for i in p_data:
 			descripcions = self.fields_get(cr,uid,i,context=None)
 			print "\t"+str(i)+": "+str(p_data[i])+" - "+str(descripcions)
-
+		print p.id
 		return p_id
 
 	def write(self, cr, uid, ids, values, context=None):
@@ -21,7 +21,9 @@ class depuracio_metodes(osv.osv):
 		p = self.browse(cr, uid, ids, context=context)
 		for j in p:
 			p_data = self.copy_data(cr, uid, j.id, default=None, context=None)
-			print "Datos:"
+			print "Datos"
+			detalles = self.perm_read(cr,uid,ids)
+			print detalles
 			for i in p_data:
 				descripcions = self.fields_get(cr,uid,i,context=None)
 				print "\t"+str(i)+": "+str(p_data[i])+" - "+str(descripcions)
@@ -35,8 +37,8 @@ class depuracio_metodes(osv.osv):
 depuracio_metodes()
 
 class depuracio_depproduct(osv.osv):
-	_name = 'depuracio.depproduct'
-	_inherit = 'depuracio.metodes'
+	_name = 'product.product'
+	_inherit = ['depuracio.metodes','product.product']
 	_columns = {
 		'name': fields.integer('Name'),
 	}

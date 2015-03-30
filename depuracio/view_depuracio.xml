@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
 <data>
-
+<!--
 <menuitem name="depuracio" id="menu_depuracio"/>
 <menuitem name="Management" id="menu_depuracio_management"  parent="menu_depuracio"/>
 
@@ -29,6 +29,6 @@
 	<field name="view_mode">tree,form</field>
 </record>
 
-<menuitem name="depproduct" id="menu_depuracio_depproduct" action="action_depuracio_depproduct" parent="menu_depuracio_management"/>
-
-</data></openerp>
+	<menuitem name="depproduct" id="menu_depuracio_depproduct" action="action_depuracio_depproduct" parent="menu_depuracio_management"/>
+-->
+</data></openerp> 
